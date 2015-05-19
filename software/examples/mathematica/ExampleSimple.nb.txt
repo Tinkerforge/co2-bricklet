@@ -1,0 +1,19 @@
+Needs["NETLink`"]
+LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
+
+host="localhost"
+port=4223
+uid="amb"(* Change to your UID *)
+
+(* Create IPConnection and device object *)
+ipcon=NETNew["Tinkerforge.IPConnection"]
+co2=NETNew["Tinkerforge.BrickletCO2",uid,ipcon]
+ipcon@Connect[host,port]
+
+(* Get current co2 concentration (unit is ppm) *)
+Print["CO2 Concentration: "<>ToString[N[Quantity[co2@GetCO2Concentration[],"ppm"]]]]
+
+(* Clean up *)
+ipcon@Disconnect[]
+ReleaseNETObject[co2]
+ReleaseNETObject[ipcon]
