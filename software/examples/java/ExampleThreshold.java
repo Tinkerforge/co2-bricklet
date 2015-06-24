@@ -18,14 +18,14 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		co2.setDebouncePeriod(10000);
 
-		// Configure threshold for "greater than 20 ppm"
-		co2.setCO2ConcentrationCallbackThreshold('>', (short)(20), (short)0);
+		// Configure threshold for "greater than 750 ppm"
+		co2.setCO2ConcentrationCallbackThreshold('>', (short)750, (short)0);
 
-		// Add and implement co2 concentration reached listener 
-		// (called if co2 concentration is greater than 200 lux)
+		// Add and implement CO2 concentration reached listener
+		// (called if CO2 concentration is greater than 750 ppm)
 		co2.addCO2ConcentrationReachedListener(new BrickletCO2.CO2ConcentrationReachedListener() {
 			public void co2ConcentrationReached(int co2Concentration) {
-				System.out.println("CO2 Concentration: " + co2Concentration + " ppm.");
+				System.out.println("CO2 Concentration: " + co2Concentration + " ppm");
 			}
 		});
 

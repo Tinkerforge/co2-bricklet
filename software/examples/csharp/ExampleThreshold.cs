@@ -6,13 +6,13 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback for co2 concentration greater than 20 ppm
+	// Callback for CO2 concentration greater than 750 ppm
 	static void ReachedCB(BrickletCO2 sender, int co2Concentration)
 	{
-		System.Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm.");
+		System.Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
 	}
 
-	static void Main() 
+	static void Main()
 	{
 		IPConnection ipcon = new IPConnection(); // Create IP connection
 		BrickletCO2 co2 = new BrickletCO2(UID, ipcon); // Create device object
@@ -26,8 +26,8 @@ class Example
 		// Register threshold reached callback to function ReachedCB
 		co2.CO2ConcentrationReached += ReachedCB;
 
-		// Configure threshold for "greater than 20 ppm"
-		co2.SetCO2ConcentrationCallbackThreshold('>', 20, 0);
+		// Configure threshold for "greater than 750 ppm"
+		co2.SetCO2ConcentrationCallbackThreshold('>', 750, 0);
 
 		System.Console.WriteLine("Press enter to exit");
 		System.Console.ReadLine();

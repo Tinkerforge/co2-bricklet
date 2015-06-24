@@ -1,19 +1,12 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
-
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
-
-(* CreatedBy='Mathematica 9.0' *)
-
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
-NotebookDataPosition[       157,          7]
-NotebookDataLength[      6718,        161]
-NotebookOptionsPosition[      6442,        147]
-NotebookOutlinePosition[      6780,        162]
-CellTagsIndexPosition[      6737,        159]
+NotebookDataPosition[         0,          0]
+NotebookDataLength[      6481,        152]
+NotebookOptionsPosition[      6047,        131]
+NotebookOutlinePosition[      6386,        146]
+CellTagsIndexPosition[      6343,        143]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -48,8 +41,7 @@ Cell[BoxData[{
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
  RowBox[{"co2", "=", 
   RowBox[{"NETNew", "[", 
-   RowBox[{
-   "\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
+   RowBox[{"\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"ipcon", "@", 
@@ -67,46 +59,38 @@ Cell[BoxData[{
   "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
-   "Callback", " ", "for", " ", "co2 concentration", " ", "greater", " ", "than", 
-    " ", "20", " ", "ppm"}], " ", "*)"}]}], "\n", 
+   "Callback", " ", "for", " ", "CO2", " ", "concentration", " ", "greater", 
+    " ", "than", " ", "750", " ", "ppm"}], " ", "*)"}]}], "\n", 
  RowBox[{
-  RowBox[{
-   RowBox[{"CO2ConcentrationReachedCB", "[", 
-    RowBox[{"sender_", ",", "co2_concentration_"}], "]"}], ":=", 
-   "\[IndentingNewLine]", 
-   RowBox[{"Module", "[", 
-    RowBox[{
-     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"Print", "[", 
-       RowBox[{"\"\<CO2 Concentration \>\"", "<>", 
-        RowBox[{"ToString", "[", 
-         RowBox[{"N", "[", 
-          RowBox[{"Quantity", "[", 
-           RowBox[{"co2_concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], 
-         "]"}], "<>", "\"\<.\>\""}], "]"}], ";", "\[IndentingNewLine]",}]}], 
-    "\[IndentingNewLine]", "]"}]}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  RowBox[{"CO2ConcentrationReachedCB", "[", 
+   RowBox[{"sender_", ",", "co2Concentration_"}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<CO2 Concentration: \>\"", "<>", 
+    RowBox[{"ToString", "[", 
+     RowBox[{"N", "[", 
+      RowBox[{"Quantity", "[", 
+       RowBox[{"co2Concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], 
+     "]"}]}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"AddEventHandler", "[", 
    RowBox[{
-    RowBox[{"co2", "@", "CO2ConcentrationReached"}], ",", "CO2ConcentrationReachedCB"}], 
-   "]"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"co2", "@", "CO2ConcentrationReached"}], ",", 
+    "CO2ConcentrationReachedCB"}], "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
    "Configure", " ", "threshold", " ", "for", " ", 
-    "\"\<greater than 20 ppm\>\"", " ", 
+    "\"\<greater than 750 ppm\>\"", " ", 
     RowBox[{"(", 
-     RowBox[{"unit", " ", "is", " ", 
-      RowBox[{"ppm"}]}], ")"}]}], " ", 
+     RowBox[{"unit", " ", "is", " ", "ppm"}], ")"}]}], " ", 
    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{"option", "=", 
   "Tinkerforge`BrickletCO2`THRESHOLDUOPTIONUGREATER"}], "\n", 
  RowBox[{
   RowBox[{"co2", "@", 
    RowBox[{"SetCO2ConcentrationCallbackThreshold", "[", 
-    RowBox[{"option", ",", 
-     RowBox[{"20"}], ",", "0"}], "]"}]}], 
+    RowBox[{"option", ",", "750", ",", "0"}], "]"}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], 
@@ -141,11 +125,13 @@ Cell[BoxData[{
    3.600608760452553*^9}, {3.600608824736239*^9, 3.600608825481593*^9}, 
    3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}, {
    3.600609340818445*^9, 3.600609544802136*^9}, {3.600609618298398*^9, 
-   3.6006096224709063`*^9}, 3.600610394591187*^9}]
+   3.6006096224709063`*^9}, 3.600610394591187*^9, {3.644134523860688*^9, 
+   3.6441345592282133`*^9}, {3.6441346535280848`*^9, 3.644134659213187*^9}, 
+   3.6441368739030933`*^9}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{196, Automatic}, {79, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{194, Automatic}, {77, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -159,10 +145,9 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 652, 12, 55, "Input"],
-Cell[1212, 34, 5226, 111, 693, "Input"]
+Cell[400, 13, 652, 12, 55, "Input"],
+Cell[1055, 27, 4988, 102, 605, "Input"]
 }
 ]
 *)
 
-(* End of internal cache information *)

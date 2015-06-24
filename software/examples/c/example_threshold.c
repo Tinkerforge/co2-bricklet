@@ -7,11 +7,11 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback for co2 concentration greater than 20 ppm
+// Callback for CO2 concentration greater than 750 ppm
 void cb_reached(uint16_t co2_concentration, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("CO2 concentration: %d ppm.\n", co2_concentration);
+	printf("CO2 Concentration: %d ppm\n", co2_concentration);
 }
 
 int main() {
@@ -21,7 +21,7 @@ int main() {
 
 	// Create device object
 	CO2 co2;
-	co2_create(&co2, UID, &ipcon); 
+	co2_create(&co2, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -39,8 +39,8 @@ int main() {
 	                      (void *)cb_reached,
 	                      NULL);
 
-	// Configure threshold for "greater than 20 ppm"
-	co2_set_co2_concentration_callback_threshold(&co2, '>', 20, 0);
+	// Configure threshold for "greater than 750 ppm"
+	co2_set_co2_concentration_callback_threshold(&co2, '>', 750, 0);
 
 	printf("Press key to exit\n");
 	getchar();

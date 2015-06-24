@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-  
+# -*- coding: utf-8 -*-
 
 HOST = "localhost"
 PORT = 4223
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get current co2 concentration (unit is ppm)
+    # Get current CO2 concentration (unit is ppm)
     co2_concentration = co2.get_co2_concentration()
 
     print('CO2 Concentration: ' + str(co2_concentration) + ' ppm')

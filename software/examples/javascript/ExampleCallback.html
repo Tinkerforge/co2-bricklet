@@ -41,18 +41,17 @@
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
                     function(connectReason) {
-                        // Set Period for co2 concentration callback to 1s (1000ms)
-                        // Note: The co2 concentration callback is only called every second if the
-                        // co2 concentration has changed since the last call!
+                        // Set Period for CO2 concentration callback to 1s (1000ms)
+                        // Note: The CO2 concentration callback is only called every second if the
+                        // CO2 concentration has changed since the last call!
                         co2.setCO2ConcentrationCallbackPeriod(1000);
                     }
                 );
                 // Register position callback
                 co2.on(Tinkerforge.BrickletCO2.CALLBACK_CO2_CONCENTRATION,
-                    // Callback function for co2 concentration callback (parameter has unit ppm)
+                    // Callback function for CO2 concentration callback (parameter has unit ppm)
                     function(co2Concentration) {
-                        textArea.value += 'CO2 Concentration: '+co2Concentration+' ppm';
-                        textArea.value += '\n';
+                        textArea.value += 'CO2 Concentration: '+co2Concentration+' ppm\n';
                         textArea.scrollTop = textArea.scrollHeight;
                     }
                 );
