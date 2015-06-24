@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      3728,        103]
-NotebookOptionsPosition[      3296,         82]
-NotebookOutlinePosition[      3634,         97]
-CellTagsIndexPosition[      3591,         94]
+NotebookDataLength[      3722,        101]
+NotebookOptionsPosition[      3296,         80]
+NotebookOutlinePosition[      3628,         95]
+CellTagsIndexPosition[      3585,         92]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -40,18 +40,16 @@ Cell[BoxData[{
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
  RowBox[{"co2", "=", 
   RowBox[{"NETNew", "[", 
-   RowBox[{
-   "\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
+   RowBox[{"\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"ipcon", "@", 
    RowBox[{"Connect", "[", 
-    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\[IndentingNewLine]", 
+    RowBox[{"host", ",", "port"}], "]"}]}], "\[IndentingNewLine]", "\n", 
   RowBox[{"(*", " ", 
-   RowBox[{"Get", " ", "current", " ", "co2 concentration", " ", 
+   RowBox[{"Get", " ", "current", " ", "CO2", " ", "concentration", " ", 
     RowBox[{"(", 
-     RowBox[{"unit", " ", "is", " ", 
-      RowBox[{"ppm", "/", "10"}]}], ")"}]}], " ", "*)"}]}], "\n", 
+     RowBox[{"unit", " ", "is", " ", "ppm"}], ")"}]}], " ", "*)"}]}], "\n", 
  RowBox[{
   RowBox[{"Print", "[", 
    RowBox[{"\"\<CO2 Concentration: \>\"", "<>", 
@@ -70,19 +68,19 @@ Cell[BoxData[{
  RowBox[{"ReleaseNETObject", "[", "co2", "]"}], "\[IndentingNewLine]", 
  RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]}], "Input",
  CellChangeTimes->CompressedData["
-1:eJwdzU8og3EcBvA3Lf/j4s+iFoscFrHZZS2bdtgOhhy2ldU0/97azKLFwU5u
-o7ERm9naDmu5SWTESmplRUNmhDnyNg4yWiHv8zt8+9RTz/NtNE4OjBZQFFXP
-HkwaPjq9V0x3u1Eohk71vQE2v54b4cmfaxyqMltT8LFfMgP5ApkbcgrTm1CU
-FfnhNq96boN1ITxNHFtOzRM/GaIpGsoGWSsO9t9gxluegwEz8w01bv0PfLml
-iR3rEX4IOc/XBC1cjgDmWjVtkFYxYhj35YlPAbsbWmPKFait9SqO8V+R7oVK
-/4UGCh/0OrjmcEhPWdWuZBe05BqoBPaihkrodQ7XwL3fEi4smpDc0ddsT1t1
-DxOyIwaad26I8dLDVRMr8x7zQUG2OAzpZ08EyvOzg35W6a58BC611Fmhne4j
-Smw9NnimGyKWeb4uYXAxnoL/BVL6+Q==
+1:eJwdzU0ow3EcBvCl5T0uXpa0WF4OizC7rGVbO2wHQw7bymqat39tZtHiYCc3
+1tgIM1ubWstNIiNWUiuK5m1ewhz5G0lGK+T//A7fPvXU83wrDUOdfRksFquc
+ORjTfzS7z2hZg6FJCB2qWz2sfj42wP0/5wBUJlaH4X2HaBTy+BIXZGdeL0NB
+UuCFa9zi8SXGqeAIsX8mPkH8pInGcCDpZyzY3nqFCXd+CvpM9DdUu3Q/8OmK
+IjYuhHgB5FxPFTRz2HyYqlPXQ0pJC2HUkyY++GwuaIkoZqGm1C3fw3/5dRtU
+eE/UsOlOp4Xzk5PiA0aVM9YCzakK1hH2wvpC6Hb0lMDN3xwOzBoU3VDnTE9T
+dAuPJLs0NK1fEqO5O3NGRvot4oH8ZHYQUo+LIShNj3V5GcUb0l44XVtmgTaq
+nSiytlrhobabmLf4dQr99mgcSiXb9pWaF9nHxTvxH//wA/c=
   "]]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{335, Automatic}, {55, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{335, 64}, {55, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -97,7 +95,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 602, 11, 55, "Input"],
-Cell[1005, 26, 2287, 54, 363, "Input"]
+Cell[1005, 26, 2287, 52, 363, "Input"]
 }
 ]
 *)

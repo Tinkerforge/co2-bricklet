@@ -15,12 +15,12 @@ public class ExampleCallback {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Set Period for co2 concentration callback to 1s (1000ms)
-		// Note: The co2 concentration callback is only called every second if the 
-		//       co2 concentration has changed since the last call!
+		// Set Period for CO2 concentration callback to 1s (1000ms)
+		// Note: The CO2 concentration callback is only called every second if the
+		//       CO2 concentration has changed since the last call!
 		co2.setCO2ConcentrationCallbackPeriod(1000);
 
-		// Add and implement co2 concentration listener (called if co2 concentration changes)
+		// Add and implement CO2 concentration listener (called if CO2 concentration changes)
 		co2.addCO2ConcentrationListener(new BrickletCO2.CO2ConcentrationListener() {
 			public void co2Concentration(int co2Concentration) {
 				System.out.println("CO2 Concentration: " + co2Concentration + " ppm");

@@ -16,7 +16,7 @@ ipcon.connect(HOST, PORT,
 // Don't use device before ipcon is connected
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function(connectReason) {
-        // Get current co2 concentration (unit is ppm)
+        // Get current CO2 concentration (unit is ppm)
         co2.getCO2Concentration(
             function(co2Concentration) {
                 console.log('CO2 Concentration: '+co2Concentration+' ppm');

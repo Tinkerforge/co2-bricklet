@@ -14,7 +14,7 @@ int main() {
 
 	// Create device object
 	CO2 co2;
-	co2_create(&co2, UID, &ipcon); 
+	co2_create(&co2, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -23,7 +23,7 @@ int main() {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get current co2 concentration (unit is ppm)
+	// Get current CO2 concentration (unit is ppm)
 	uint16_t co2_concentration;
 	if(co2_get_co2_concentration(&co2, &co2_concentration) < 0) {
 		fprintf(stderr, "Could not get value, probably timeout\n");

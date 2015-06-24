@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6160,        149]
-NotebookOptionsPosition[      5728,        128]
-NotebookOutlinePosition[      6066,        143]
-CellTagsIndexPosition[      6023,        140]
+NotebookDataLength[      6263,        148]
+NotebookOptionsPosition[      5837,        127]
+NotebookOutlinePosition[      6169,        142]
+CellTagsIndexPosition[      6126,        139]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -41,29 +41,28 @@ Cell[BoxData[{
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
  RowBox[{"co2", "=", 
   RowBox[{"NETNew", "[", 
-   RowBox[{
-   "\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
+   RowBox[{"\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"ipcon", "@", 
    RowBox[{"Connect", "[", 
-    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\n", 
+    RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
-   "Set", " ", "Period", " ", "for", " ", "co2 concentration", " ", "callback", " ",
-     "to", " ", "1", "s", " ", 
+   "Set", " ", "Period", " ", "for", " ", "CO2", " ", "concentration", " ", 
+    "callback", " ", "to", " ", "1", "s", " ", 
     RowBox[{"(", 
      RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}], "\n", 
   RowBox[{"(*", " ", 
    RowBox[{"Note", ":", " ", 
     RowBox[{
-    "The", " ", "co2 concentration", " ", "callback", " ", "is", " ", "only", " ", 
-     "called", " ", "every", " ", "second", " ", "if", " ", "the"}]}], " ", 
-   "*)"}], "\[IndentingNewLine]", 
+    "The", " ", "CO2", " ", "concentration", " ", "callback", " ", "is", " ", 
+     "only", " ", "called", " ", "every", " ", "second", " ", "if", " ", 
+     "the"}]}], " ", "*)"}], "\n", 
   RowBox[{"(*", "       ", 
    RowBox[{
-   "co2 concentration", " ", "has", " ", "changed", " ", "since", " ", "the", " ", 
-    "last", " ", 
+   "CO2", " ", "concentration", " ", "has", " ", "changed", " ", "since", " ",
+     "the", " ", "last", " ", 
     RowBox[{"call", "!"}]}], " ", "*)"}]}], "\n", 
  RowBox[{
   RowBox[{"co2", "@", 
@@ -71,28 +70,27 @@ Cell[BoxData[{
   "\[IndentingNewLine]", 
   RowBox[{"(*", " ", 
    RowBox[{
-   "Callback", " ", "function", " ", "for", " ", "co2 concentration", " ", 
-    "callback", " ", 
+   "Callback", " ", "function", " ", "for", " ", "CO2", " ", "concentration", 
+    " ", "callback", " ", 
     RowBox[{"(", 
-     RowBox[{"parameter", " ", "has", " ", "unit", " ", 
-      RowBox[{"ppm", "/", "10"}]}], ")"}]}], " ", 
-   "*)"}]}], "\[IndentingNewLine]", 
+     RowBox[{"parameter", " ", "has", " ", "unit", " ", "ppm"}], ")"}]}], " ",
+    "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"CO2ConcentrationCB", "[", 
-   RowBox[{"sender_", ",", "co2_concentration_"}], "]"}], ":=", 
+   RowBox[{"sender_", ",", "co2Concentration_"}], "]"}], ":=", 
   "\[IndentingNewLine]", 
   RowBox[{"Print", "[", 
    RowBox[{"\"\<CO2 Concentration: \>\"", "<>", 
     RowBox[{"ToString", "[", 
      RowBox[{"N", "[", 
       RowBox[{"Quantity", "[", 
-       RowBox[{"co2_concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], "]"}]}], 
-   "]"}]}], "\[IndentingNewLine]", 
+       RowBox[{"co2Concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], 
+     "]"}]}], "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"AddEventHandler", "[", 
    RowBox[{
-    RowBox[{"co2", "@", "CO2Concentration"}], ",", "CO2ConcentrationCB"}], "]"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+    RowBox[{"co2", "@", "CO2Concentration"}], ",", "CO2ConcentrationCB"}], 
+   "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -124,11 +122,12 @@ Cell[BoxData[{
    3.6006085096134768`*^9}, {3.600608564485358*^9, 3.6006085694976482`*^9}, {
    3.6006086083315887`*^9, 3.600608696478737*^9}, {3.600608732817322*^9, 
    3.600608760452553*^9}, {3.600608824736239*^9, 3.600608825481593*^9}, 
-   3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}}]
+   3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}, {
+   3.644134461297558*^9, 3.6441344729857807`*^9}}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{334, Automatic}, {54, Automatic}},
-FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+WindowMargins->{{334, 65}, {54, Automatic}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -143,7 +142,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 4669, 99, 561, "Input"]
+Cell[1055, 27, 4778, 98, 561, "Input"]
 }
 ]
 *)

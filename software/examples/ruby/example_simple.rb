@@ -16,7 +16,7 @@ co2 = BrickletCO2.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Get current co2 concentration (unit is ppm)
+# Get current CO2 concentration (unit is ppm)
 co2_concentration = co2.get_co2_concentration
 puts "CO2 Concentration: #{co2_concentration} ppm"
 

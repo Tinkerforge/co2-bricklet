@@ -1,6 +1,6 @@
 function octave_example_threshold()
     more off;
-    
+
     HOST = "localhost";
     PORT = 4223;
     UID = "amb"; % Change to your UID
@@ -14,9 +14,9 @@ function octave_example_threshold()
     % Set threshold callbacks with a debounce time of 10 seconds (10000ms)
     co2.setDebouncePeriod(10000);
 
-    % Configure threshold for "greater than 20 ppm"
-    co2.setCO2ConcentrationCallbackThreshold(co2.THRESHOLD_OPTION_GREATER, 20, 0);
-    
+    % Configure threshold for "greater than 750 ppm"
+    co2.setCO2ConcentrationCallbackThreshold(co2.THRESHOLD_OPTION_GREATER, 750, 0);
+
     % Register threshold reached callback to function cb_reached
     co2.addCO2ConcentrationReachedCallback(@cb_reached);
 
@@ -24,7 +24,7 @@ function octave_example_threshold()
     ipcon.disconnect();
 end
 
-% Callback function for co2 concentration callback (parameter has unit ppm)
+% Callback function for CO2 concentration callback (parameter has unit ppm)
 function cb_reached(e)
-    fprintf("CO2 Concentration %g ppm.\n", e.co2_concentration);
+    fprintf("CO2 Concentration: %g ppm\n", e.co2_concentration);
 end

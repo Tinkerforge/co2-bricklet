@@ -11,7 +11,7 @@ function octave_example_simple()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get current co2 concentration (unit is ppm)
+    % Get current CO2 concentration (unit is ppm)
     co2_concentration = co2.getCO2Concentration();
     fprintf("CO2 Concentration: %g ppm\n", co2_concentration);
 

@@ -18,14 +18,14 @@ function matlab_example_threshold()
     % Register threshold reached callback to function cb_reached
     set(co2, 'CO2ConcentrationReachedCallback', @(h, e) cb_reached(e));
 
-    % Configure threshold for "greater than 20 ppm" (unit is ppm)
-    co2.setCO2ConcentrationCallbackThreshold('>', 20, 0);
+    % Configure threshold for "greater than 750 ppm" (unit is ppm)
+    co2.setCO2ConcentrationCallbackThreshold('>', 750, 0);
 
     input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
 
-% Callback for co2 concentration greater than 20 ppm
+% Callback for CO2 concentration greater than 750 ppm
 function cb_reached(e)
-    fprintf('CO2 Concentration %g ppm.\n', e.co2_concentration);
+    fprintf('CO2 Concentration: %g ppm\n', e.co2_concentration);
 end

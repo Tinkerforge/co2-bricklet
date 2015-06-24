@@ -1,4 +1,4 @@
-#!/usr/bin/perl  
+#!/usr/bin/perl
 
 use Tinkerforge::IPConnection;
 use Tinkerforge::BrickletCO2;
@@ -10,7 +10,7 @@ use constant UID => 'XYZ'; # Change to your UID
 my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
 my $co2 = Tinkerforge::BrickletCO2->new(&UID, $ipcon); # Create device object
 
-# Callback function for co2 concentration callback (parameter has unit ppm)
+# Callback function for CO2 concentration callback (parameter has unit ppm)
 sub cb_co2_concentration
 {
     my ($co2_concentration) = @_;
@@ -21,12 +21,12 @@ sub cb_co2_concentration
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Set Period for co2 concentration callback to 1s (1000ms)
-# Note: The co2 concentration callback is only called every second if the 
-#       co2 concentration has changed since the last call!
+# Set Period for CO2 concentration callback to 1s (1000ms)
+# Note: The CO2 concentration callback is only called every second if the
+#       CO2 concentration has changed since the last call!
 $co2->set_co2_concentration_callback_period(1000);
 
-# Register co2 concentration callback to function cb_co2_concentration
+# Register CO2 concentration callback to function cb_co2_concentration
 $co2->register_callback($co2->CALLBACK_CO2_CONCENTRATION, 'cb_co2_concentration');
 
 print "Press any key to exit...\n";
