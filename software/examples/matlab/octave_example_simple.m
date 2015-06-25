@@ -3,7 +3,7 @@ function octave_example_simple()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "amb"; % Change to your UID
+    UID = "hbo"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
     co2 = java_new("com.tinkerforge.BrickletCO2", UID, ipcon); % Create device object

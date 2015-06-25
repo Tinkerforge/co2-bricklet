@@ -3,7 +3,7 @@ function octave_example_threshold()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "amb"; % Change to your UID
+    UID = "hbo"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
     co2 = java_new("com.tinkerforge.BrickletCO2", UID, ipcon); % Create device object
@@ -26,5 +26,5 @@ end
 
 % Callback function for CO2 concentration callback (parameter has unit ppm)
 function cb_reached(e)
-    fprintf("CO2 Concentration: %g ppm\n", e.co2_concentration);
+    fprintf("CO2 Concentration: %g ppm\n", e.co2Concentration);
 end
