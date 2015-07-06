@@ -37,11 +37,24 @@
 
 #define FID_LAST 7
 
-int32_t make_co2_value(const int32_t value);
-
 void invocation(const ComType com, const uint8_t *data);
 void constructor(void);
 void destructor(void);
 void tick(const uint8_t tick_type);
+
+void k30_read_registers(const uint8_t reg, uint8_t *data, const uint8_t length);
+void k30_write_register(const uint8_t reg, const uint8_t value);
+
+bool i2c_scl_value(void);
+void i2c_scl_high(void);
+void i2c_scl_low(void);
+bool i2c_sda_value(void);
+void i2c_sda_high(void);
+void i2c_sda_low(void);
+void i2c_sleep_halfclock(void);
+void i2c_stop(void);
+void i2c_start(void);
+uint8_t i2c_recv_byte(bool ack);
+bool i2c_send_byte(const uint8_t value);
 
 #endif

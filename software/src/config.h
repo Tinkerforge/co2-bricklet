@@ -42,9 +42,16 @@
 #define MAX_ADC_VALUE ((1  << 12) - 1)
 #define MAX_VOLTAGE 3300
 
+#define PIN_AD  (BS->pin1_ad)
+#define PIN_EN  (BS->pin2_da)
+#define PIN_SDA (BS->pin3_pwm)
+#define PIN_SCL (BS->pin4_io)
+
 #define LOGGING_LEVEL LOGGING_DEBUG
 #define DEBUG_BRICKLET 0
+#define BOARD_MCK 64000000
 
+#define BRICKLET_VALUE_APPLIED_OUTSIDE
 #define BRICKLET_HAS_SIMPLE_SENSOR
 #define BRICKLET_NO_OFFSET
 #define INVOCATION_IN_BRICKLET_CODE
