@@ -4,7 +4,7 @@ function matlab_example_simple()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'amb'; % Change to your UID
+    UID = 'hhw'; % Change to your UID
 
     ipcon = IPConnection(); % Create IP connection
     co2 = BrickletCO2(UID, ipcon); % Create device object
@@ -13,7 +13,7 @@ function matlab_example_simple()
     % Don't use device before ipcon is connected
 
     % Get current CO2 concentration (unit is ppm)
-    co2_concentration = al.getCO2Concentration();
+    co2_concentration = co2.getCO2Concentration();
     fprintf('CO2 Concentration: %g ppm\n', co2_concentration);
 
     input('Press any key to exit...\n', 's');
