@@ -6,8 +6,8 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change to your UID
 
-	// Callback for CO2 concentration greater than 750 ppm
-	static void ReachedCB(BrickletCO2 sender, int co2Concentration)
+	// Callback function for CO2 concentration greater than 750 ppm (parameter has unit ppm)
+	static void CO2ConcentrationReachedCB(BrickletCO2 sender, int co2Concentration)
 	{
 		System.Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
 	}
@@ -23,10 +23,10 @@ class Example
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		co2.SetDebouncePeriod(10000);
 
-		// Register threshold reached callback to function ReachedCB
-		co2.CO2ConcentrationReached += ReachedCB;
+		// Register threshold reached callback to function CO2ConcentrationReachedCB
+		co2.CO2ConcentrationReached += CO2ConcentrationReachedCB;
 
-		// Configure threshold for "greater than 750 ppm"
+		// Configure threshold for "greater than 750 ppm" (unit is ppm)
 		co2.SetCO2ConcentrationCallbackThreshold('>', 750, 0);
 
 		System.Console.WriteLine("Press enter to exit");

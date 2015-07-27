@@ -1,5 +1,5 @@
-import com.tinkerforge.BrickletCO2;
 import com.tinkerforge.IPConnection;
+import com.tinkerforge.BrickletCO2;
 
 public class ExampleSimple {
 	private static final String HOST = "localhost";
@@ -17,7 +17,6 @@ public class ExampleSimple {
 
 		// Get current CO2 concentration (unit is ppm)
 		int co2Concentration = co2.getCO2Concentration(); // Can throw com.tinkerforge.TimeoutException
-
 		System.out.println("CO2 Concentration: " + co2Concentration + " ppm");
 
 		System.out.println("Press key to exit"); System.in.read();

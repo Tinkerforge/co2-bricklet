@@ -19,9 +19,9 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Set Period for CO2 concentration callback to 1s (1000ms)
-    # Note: The CO2 concentration callback is only called every second if the
-    #       CO2 concentration has changed since the last call!
+    # Set period for CO2 concentration callback to 1s (1000ms)
+    # Note: The CO2 concentration callback is only called every second
+    #       if the CO2 concentration has changed since the last call!
     co2.set_co2_concentration_callback_period(1000)
 
     # Register CO2 concentration callback to function cb_co2_concentration

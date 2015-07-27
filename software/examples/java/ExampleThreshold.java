@@ -1,5 +1,5 @@
-import com.tinkerforge.BrickletCO2;
 import com.tinkerforge.IPConnection;
+import com.tinkerforge.BrickletCO2;
 
 public class ExampleThreshold {
 	private static final String HOST = "localhost";
@@ -18,11 +18,10 @@ public class ExampleThreshold {
 		// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 		co2.setDebouncePeriod(10000);
 
-		// Configure threshold for "greater than 750 ppm"
+		// Configure threshold for "greater than 750 ppm" (unit is ppm)
 		co2.setCO2ConcentrationCallbackThreshold('>', (short)750, (short)0);
 
-		// Add and implement CO2 concentration reached listener
-		// (called if CO2 concentration is greater than 750 ppm)
+		// Add threshold reached listener for CO2 concentration greater than 750 ppm (parameter has unit ppm)
 		co2.addCO2ConcentrationReachedListener(new BrickletCO2.CO2ConcentrationReachedListener() {
 			public void co2ConcentrationReached(int co2Concentration) {
 				System.out.println("CO2 Concentration: " + co2Concentration + " ppm");
