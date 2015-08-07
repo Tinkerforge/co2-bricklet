@@ -6,7 +6,7 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_co2 import CO2
+from tinkerforge.bricklet_co2 import BrickletCO2
 
 # Callback function for CO2 concentration greater than 750 ppm (parameter has unit ppm)
 def cb_co2_concentration_reached(co2_concentration):
@@ -14,7 +14,7 @@ def cb_co2_concentration_reached(co2_concentration):
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    co2 = CO2(UID, ipcon) # Create device object
+    co2 = BrickletCO2(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
