@@ -14,7 +14,6 @@ Module ExampleSimple
 
         ' Get current CO2 concentration (unit is ppm)
         Dim co2Concentration As Integer = co2.GetCO2Concentration()
-
         System.Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")
 
         System.Console.WriteLine("Press key to exit")

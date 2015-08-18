@@ -5,8 +5,8 @@ Module ExampleThreshold
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
 
-    ' Callback for CO2 concentration greater than 750 ppm
-    Sub ReachedCB(ByVal sender As BrickletCO2, ByVal co2Concentration As Integer)
+    ' Callback function for CO2 concentration greater than 750 ppm (parameter has unit ppm)
+    Sub CO2ConcentrationReachedCB(ByVal sender As BrickletCO2, ByVal co2Concentration As Integer)
         System.Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")
     End Sub
 
@@ -20,10 +20,10 @@ Module ExampleThreshold
         ' Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         co2.SetDebouncePeriod(10000)
 
-        ' Register threshold reached callback to function ReachedCB
-        AddHandler co2.CO2ConcentrationReached, AddressOf ReachedCB
+        ' Register threshold reached callback to function CO2ConcentrationReachedCB
+        AddHandler co2.CO2ConcentrationReached, AddressOf CO2ConcentrationReachedCB
 
-        ' Configure threshold for "greater than 750 ppm"
+        ' Configure threshold for "greater than 750 ppm" (unit is ppm)
         co2.SetCO2ConcentrationCallbackThreshold(">"C, 750, 0)
 
         System.Console.WriteLine("Press key to exit")
