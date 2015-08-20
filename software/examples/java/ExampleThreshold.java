@@ -19,7 +19,7 @@ public class ExampleThreshold {
 		co2.setDebouncePeriod(10000);
 
 		// Configure threshold for "greater than 750 ppm" (unit is ppm)
-		co2.setCO2ConcentrationCallbackThreshold('>', (short)750, (short)0);
+		co2.setCO2ConcentrationCallbackThreshold('>', 750, 0);
 
 		// Add threshold reached listener for CO2 concentration greater than 750 ppm (parameter has unit ppm)
 		co2.addCO2ConcentrationReachedListener(new BrickletCO2.CO2ConcentrationReachedListener() {
