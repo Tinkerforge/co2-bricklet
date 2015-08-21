@@ -15,7 +15,7 @@ sub cb_co2_concentration
 {
     my ($co2_concentration) = @_;
 
-    print "CO2 Concentration: " . $co2_concentration . " ppm\n";
+    print "CO2 Concentration: $co2_concentration ppm\n";
 }
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
