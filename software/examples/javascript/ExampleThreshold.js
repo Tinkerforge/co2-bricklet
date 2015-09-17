@@ -8,32 +8,33 @@ var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
 var co2 = new Tinkerforge.BrickletCO2(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
-    function(error) {
-        console.log('Error: '+error);
+    function (error) {
+        console.log('Error: ' + error);
     }
 ); // Connect to brickd
 // Don't use device before ipcon is connected
 
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-    function(connectReason) {
+    function (connectReason) {
         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         co2.setDebouncePeriod(10000);
-        // Configure threshold for "greater than 750 ppm"
+
+        // Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
         co2.setCO2ConcentrationCallbackThreshold('>', 750, 0);
     }
 );
 
-// Register threshold reached callback to function cb_reached
+// Register CO2 concentration reached callback
 co2.on(Tinkerforge.BrickletCO2.CALLBACK_CO2_CONCENTRATION_REACHED,
-    // Callback for CO2 concentration greater than 750 ppm
-    function(co2Concentration) {
+    // Callback function for CO2 concentration reached callback (parameter has unit ppm)
+    function (co2Concentration) {
         console.log('CO2 Concentration: ' + co2Concentration + ' ppm');
     }
 );
 
-console.log("Press any key to exit ...");
+console.log('Press key to exit');
 process.stdin.on('data',
-    function(data) {
+    function (data) {
         ipcon.disconnect();
         process.exit(0);
     }

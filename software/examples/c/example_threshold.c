@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change to your UID
 
-// Callback function for CO2 concentration greater than 750 ppm (parameter has unit ppm)
+// Callback function for CO2 concentration reached callback (parameter has unit ppm)
 void cb_co2_concentration_reached(uint16_t co2_concentration, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -33,13 +33,13 @@ int main(void) {
 	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	co2_set_debounce_period(&co2, 10000);
 
-	// Register threshold reached callback to function cb_co2_concentration_reached
+	// Register CO2 concentration reached callback to function cb_co2_concentration_reached
 	co2_register_callback(&co2,
 	                      CO2_CALLBACK_CO2_CONCENTRATION_REACHED,
 	                      (void *)cb_co2_concentration_reached,
 	                      NULL);
 
-	// Configure threshold for "greater than 750 ppm" (unit is ppm)
+	// Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 	co2_set_co2_concentration_callback_threshold(&co2, '>', 750, 0);
 
 	printf("Press key to exit\n");

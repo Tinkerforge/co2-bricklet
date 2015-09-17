@@ -4,7 +4,7 @@ function matlab_example_threshold()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'amb'; % Change to your UID
+    UID = 'XYZ'; % Change to your UID
 
     ipcon = IPConnection(); % Create IP connection
     co2 = BrickletCO2(UID, ipcon); % Create device object
@@ -12,20 +12,20 @@ function matlab_example_threshold()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Set threshold callbacks with a debounce time of 10 seconds (10000ms)
+    % Get threshold callbacks with a debounce time of 10 seconds (10000ms)
     co2.setDebouncePeriod(10000);
 
-    % Register threshold reached callback to function cb_reached
-    set(co2, 'CO2ConcentrationReachedCallback', @(h, e) cb_reached(e));
+    % Register CO2 concentration reached callback to function cb_co2_concentration_reached
+    set(co2, 'CO2ConcentrationReachedCallback', @(h, e) cb_co2_concentration_reached(e));
 
-    % Configure threshold for "greater than 750 ppm" (unit is ppm)
+    % Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
     co2.setCO2ConcentrationCallbackThreshold('>', 750, 0);
 
-    input('Press any key to exit...\n', 's');
+    input('Press key to exit\n', 's');
     ipcon.disconnect();
 end
 
-% Callback for CO2 concentration greater than 750 ppm
-function cb_reached(e)
-    fprintf('CO2 Concentration: %g ppm\n', e.co2_concentration);
+% Callback function for CO2 concentration reached callback (parameter has unit ppm)
+function cb_co2_concentration_reached(e)
+    fprintf('CO2 Concentration: %i ppm\n', e.co2Concentration);
 end

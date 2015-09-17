@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for CO2 concentration greater than 750 ppm (parameter has unit ppm) }
+{ Callback procedure for CO2 concentration reached callback (parameter has unit ppm) }
 procedure TExample.CO2ConcentrationReachedCB(sender: TBrickletCO2; const co2Concentration: word);
 begin
   WriteLn(Format('CO2 Concentration: %d ppm', [co2Concentration]));
@@ -45,10 +45,10 @@ begin
   { Get threshold callbacks with a debounce time of 10 seconds (10000ms) }
   co2.SetDebouncePeriod(10000);
 
-  { Register threshold reached callback to procedure CO2ConcentrationReachedCB }
+  { Register CO2 concentration reached callback to procedure CO2ConcentrationReachedCB }
   co2.OnCO2ConcentrationReached := {$ifdef FPC}@{$endif}CO2ConcentrationReachedCB;
 
-  { Configure threshold for "greater than 750 ppm" (unit is ppm) }
+  { Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm) }
   co2.SetCO2ConcentrationCallbackThreshold('>', 750, 0);
 
   WriteLn('Press key to exit');

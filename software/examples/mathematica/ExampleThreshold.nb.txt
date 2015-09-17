@@ -3,28 +3,28 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="amb"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
 co2=NETNew["Tinkerforge.BrickletCO2",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Get threshold callbacks with a debounce time of 10 seconds (10000ms) *)
+(*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
 co2@SetDebouncePeriod[10000]
 
-(* Callback for CO2 concentration greater than 750 ppm *)
+(*Callback function for CO2 concentration reached callback (parameter has unit ppm)*)
 CO2ConcentrationReachedCB[sender_,co2Concentration_]:=
  Print["CO2 Concentration: "<>ToString[N[Quantity[co2Concentration,"ppm"]]]]
 AddEventHandler[co2@CO2ConcentrationReached,CO2ConcentrationReachedCB]
 
-(* Configure threshold for "greater than 750 ppm" (unit is ppm) *)
+(*Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)*)
 option=Tinkerforge`BrickletCO2`THRESHOLDUOPTIONUGREATER
 co2@SetCO2ConcentrationCallbackThreshold[option,750,0]
 
 Input["Click OK to exit"]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
 ReleaseNETObject[co2]
 ReleaseNETObject[ipcon]

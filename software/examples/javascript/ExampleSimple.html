@@ -34,20 +34,20 @@
                 var co2 = new Tinkerforge.BrickletCO2(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
-                        // Get current co2 concentration (unit is ppm)
+                    function (connectReason) {
+                        // Get current CO2 concentration (unit is ppm)
                         co2.getCO2Concentration(
-                            function(co2Concentration) {
-                                textArea.value += 'CO2 Concentration: '+co2Concentration+' ppm\n';
+                            function (co2Concentration) {
+                                textArea.value += 'CO2 Concentration: ' + co2Concentration + ' ppm\n';
                             },
-                            function(error) {
-                                textArea.value += 'Error: '+error+'\n';
+                            function (error) {
+                                textArea.value += 'Error: ' + error + '\n';
                             }
                         );
                     }

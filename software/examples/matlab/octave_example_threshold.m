@@ -3,7 +3,7 @@ function octave_example_threshold()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "hbo"; % Change to your UID
+    UID = "XYZ"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
     co2 = java_new("com.tinkerforge.BrickletCO2", UID, ipcon); % Create device object
@@ -11,20 +11,20 @@ function octave_example_threshold()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Set threshold callbacks with a debounce time of 10 seconds (10000ms)
+    % Get threshold callbacks with a debounce time of 10 seconds (10000ms)
     co2.setDebouncePeriod(10000);
 
-    % Configure threshold for "greater than 750 ppm"
-    co2.setCO2ConcentrationCallbackThreshold(co2.THRESHOLD_OPTION_GREATER, 750, 0);
+    % Register CO2 concentration reached callback to function cb_co2_concentration_reached
+    co2.addCO2ConcentrationReachedCallback(@cb_co2_concentration_reached);
 
-    % Register threshold reached callback to function cb_reached
-    co2.addCO2ConcentrationReachedCallback(@cb_reached);
+    % Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
+    co2.setCO2ConcentrationCallbackThreshold(">", 750, 0);
 
-    input("Press any key to exit...\n", "s");
+    input("Press key to exit\n", "s");
     ipcon.disconnect();
 end
 
-% Callback function for CO2 concentration callback (parameter has unit ppm)
-function cb_reached(e)
-    fprintf("CO2 Concentration: %g ppm\n", e.co2Concentration);
+% Callback function for CO2 concentration reached callback (parameter has unit ppm)
+function cb_co2_concentration_reached(e)
+    fprintf("CO2 Concentration: %d ppm\n", e.co2Concentration);
 end

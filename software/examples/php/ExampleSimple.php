@@ -17,9 +17,8 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Get current CO2 concentration (unit is ppm)
-$co2Concentration = $co2->getCO2Concentration();
-
-echo "CO2 Concentration: $co2Concentration ppm\n";
+$co2_concentration = $co2->getCO2Concentration();
+echo "CO2 Concentration: $co2_concentration ppm\n";
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));

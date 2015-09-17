@@ -15,8 +15,8 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 
 # Get current CO2 concentration (unit is ppm)
 my $co2_concentration = $co2->get_co2_concentration();
-print "CO2 Concentration: " . $co2_concentration . " ppm\n";
+print "CO2 Concentration: $co2_concentration ppm\n";
 
-print "Press any key to exit...\n";
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

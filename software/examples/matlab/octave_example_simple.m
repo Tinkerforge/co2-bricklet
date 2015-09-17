@@ -3,7 +3,7 @@ function octave_example_simple()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "hbo"; % Change to your UID
+    UID = "XYZ"; % Change to your UID
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
     co2 = java_new("com.tinkerforge.BrickletCO2", UID, ipcon); % Create device object
@@ -12,9 +12,9 @@ function octave_example_simple()
     % Don't use device before ipcon is connected
 
     % Get current CO2 concentration (unit is ppm)
-    co2_concentration = co2.getCO2Concentration();
-    fprintf("CO2 Concentration: %g ppm\n", co2_concentration);
+    co2Concentration = co2.getCO2Concentration();
+    fprintf("CO2 Concentration: %d ppm\n", co2Concentration);
 
-    input("Press any key to exit...\n", "s");
+    input("Press key to exit\n", "s");
     ipcon.disconnect();
 end

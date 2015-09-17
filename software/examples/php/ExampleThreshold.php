@@ -10,10 +10,10 @@ const HOST = 'localhost';
 const PORT = 4223;
 const UID = 'XYZ'; // Change to your UID
 
-// Callback for CO2 concentration greater than 750 ppm
-function cb_reached($co2Concentration)
+// Callback function for CO2 concentration reached callback (parameter has unit ppm)
+function cb_co2ConcentrationReached($co2_concentration)
 {
-    echo "CO2 Concentration: " . $co2Concentration . " ppm\n";
+    echo "CO2 Concentration: $co2_concentration ppm\n";
 }
 
 $ipcon = new IPConnection(); // Create IP connection
@@ -25,10 +25,10 @@ $ipcon->connect(HOST, PORT); // Connect to brickd
 // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 $co2->setDebouncePeriod(10000);
 
-// Register threshold reached callback to function cb_reached
-$co2->registerCallback(BrickletCO2::CALLBACK_CO2_CONCENTRATION_REACHED, 'cb_reached');
+// Register CO2 concentration reached callback to function cb_co2ConcentrationReached
+$co2->registerCallback(BrickletCO2::CALLBACK_CO2_CONCENTRATION_REACHED, 'cb_co2ConcentrationReached');
 
-// Configure threshold for "greater than 750 ppm" (unit is ppm)
+// Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 $co2->setCO2ConcentrationCallbackThreshold('>', 750, 0);
 
 echo "Press ctrl+c to exit\n";

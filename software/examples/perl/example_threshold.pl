@@ -7,16 +7,16 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'XYZ'; # Change to your UID
 
-my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
-my $co2 = Tinkerforge::BrickletCO2->new(&UID, $ipcon); # Create device object
-
-# Callback subroutine for CO2 concentration greater than 750 ppm (parameter has unit ppm)
+# Callback subroutine for CO2 concentration reached callback (parameter has unit ppm)
 sub cb_co2_concentration_reached
 {
     my ($co2_concentration) = @_;
 
-    print "CO2 Concentration: " . $co2_concentration . " ppm\n";
+    print "CO2 Concentration: $co2_concentration ppm\n";
 }
+
+my $ipcon = Tinkerforge::IPConnection->new(); # Create IP connection
+my $co2 = Tinkerforge::BrickletCO2->new(&UID, $ipcon); # Create device object
 
 $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Don't use device before ipcon is connected
@@ -24,12 +24,12 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 $co2->set_debounce_period(10000);
 
-# Register threshold reached callback to subroutine cb_co2_concentration_reached
+# Register CO2 concentration reached callback to subroutine cb_co2_concentration_reached
 $co2->register_callback($co2->CALLBACK_CO2_CONCENTRATION_REACHED, 'cb_co2_concentration_reached');
 
-# Configure threshold for "greater than 750 ppm" (unit is ppm)
+# Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 $co2->set_co2_concentration_callback_threshold('>', 750, 0);
 
-print "Press any key to exit...\n";
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

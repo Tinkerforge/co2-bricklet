@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -16,10 +17,10 @@ class Example
 
 		// Get current CO2 concentration (unit is ppm)
 		int co2Concentration = co2.GetCO2Concentration();
-		System.Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
+		Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

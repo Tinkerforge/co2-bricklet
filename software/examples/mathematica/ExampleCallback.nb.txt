@@ -3,26 +3,26 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="amb"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
 co2=NETNew["Tinkerforge.BrickletCO2",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Set Period for CO2 concentration callback to 1s (1000ms) *)
-(* Note: The CO2 concentration callback is only called every second if the *)
-(*       CO2 concentration has changed since the last call! *)
-co2@SetCO2ConcentrationCallbackPeriod[1000]
-
-(* Callback function for CO2 concentration callback (parameter has unit ppm) *)
+(*Callback function for CO2 concentration callback (parameter has unit ppm)*)
 CO2ConcentrationCB[sender_,co2Concentration_]:=
  Print["CO2 Concentration: "<>ToString[N[Quantity[co2Concentration,"ppm"]]]]
 AddEventHandler[co2@CO2Concentration,CO2ConcentrationCB]
 
+(*Set period for CO2 concentration callback to 1s (1000ms)*)
+(*Note: The CO2 concentration callback is only called every second*)
+(*if the CO2 concentration has changed since the last call!*)
+co2@SetCO2ConcentrationCallbackPeriod[1000]
+
 Input["Click OK to exit"]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
 ReleaseNETObject[co2]
 ReleaseNETObject[ipcon]

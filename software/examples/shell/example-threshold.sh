@@ -1,15 +1,17 @@
 #!/bin/sh
-# connects to localhost:4223 by default, use --host and --port to change it
+# Connects to localhost:4223 by default, use --host and --port to change this
 
-# change to your UID
-uid=XYZ
+uid=XYZ # Change to your UID
 
-# get threshold callbacks with a debounce time of 10 seconds (10000ms)
+# Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 tinkerforge call co2-bricklet $uid set-debounce-period 10000
 
-# configure threshold for "greater than 750 ppm"
+# Handle incoming CO2 concentration reached callbacks (parameter has unit ppm)
+tinkerforge dispatch co2-bricklet $uid co2-concentration-reached &
+
+# Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 tinkerforge call co2-bricklet $uid set-co2-concentration-callback-threshold greater 750 0
 
-# handle incoming CO2 concentration-reached callbacks (unit is ppm)
-tinkerforge dispatch co2-bricklet $uid co2-concentration-reached\
- --execute "echo CO2 Concentration: {co2-concentration} ppm"
+echo "Press key to exit"; read dummy
+
+kill -- -$$ # Stop callback dispatch in background

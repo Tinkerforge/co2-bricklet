@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleCallback
@@ -5,9 +6,9 @@ Module ExampleCallback
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
 
-    ' Callback function for CO2 concentration callback (parameter has unit ppm)
+    ' Callback subroutine for CO2 concentration callback (parameter has unit ppm)
     Sub CO2ConcentrationCB(ByVal sender As BrickletCO2, ByVal co2Concentration As Integer)
-        System.Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")
+        Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")
     End Sub
 
     Sub Main()
@@ -17,16 +18,16 @@ Module ExampleCallback
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
+        ' Register CO2 concentration callback to subroutine CO2ConcentrationCB
+        AddHandler co2.CO2Concentration, AddressOf CO2ConcentrationCB
+
         ' Set period for CO2 concentration callback to 1s (1000ms)
         ' Note: The CO2 concentration callback is only called every second
         '       if the CO2 concentration has changed since the last call!
         co2.SetCO2ConcentrationCallbackPeriod(1000)
 
-        ' Register CO2 concentration callback to function CO2ConcentrationCB
-        AddHandler co2.CO2Concentration, AddressOf CO2ConcentrationCB
-
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

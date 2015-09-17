@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -9,7 +10,7 @@ class Example
 	// Callback function for CO2 concentration callback (parameter has unit ppm)
 	static void CO2ConcentrationCB(BrickletCO2 sender, int co2Concentration)
 	{
-		System.Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
+		Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
 	}
 
 	static void Main()
@@ -20,16 +21,16 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
+		// Register CO2 concentration callback to function CO2ConcentrationCB
+		co2.CO2Concentration += CO2ConcentrationCB;
+
 		// Set period for CO2 concentration callback to 1s (1000ms)
 		// Note: The CO2 concentration callback is only called every second
 		//       if the CO2 concentration has changed since the last call!
 		co2.SetCO2ConcentrationCallbackPeriod(1000);
 
-		// Register CO2 concentration callback to function CO2ConcentrationCB
-		co2.CO2Concentration += CO2ConcentrationCB;
-
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

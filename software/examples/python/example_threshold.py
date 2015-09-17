@@ -8,9 +8,9 @@ UID = "XYZ" # Change to your UID
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_co2 import BrickletCO2
 
-# Callback function for CO2 concentration greater than 750 ppm (parameter has unit ppm)
+# Callback function for CO2 concentration reached callback (parameter has unit ppm)
 def cb_co2_concentration_reached(co2_concentration):
-    print('CO2 Concentration: ' + str(co2_concentration) + ' ppm')
+    print("CO2 Concentration: " + str(co2_concentration) + " ppm")
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
@@ -22,11 +22,11 @@ if __name__ == "__main__":
     # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
     co2.set_debounce_period(10000)
 
-    # Register threshold reached callback to function cb_co2_concentration_reached
+    # Register CO2 concentration reached callback to function cb_co2_concentration_reached
     co2.register_callback(co2.CALLBACK_CO2_CONCENTRATION_REACHED, cb_co2_concentration_reached)
 
-    # Configure threshold for "greater than 750 ppm" (unit is ppm)
-    co2.set_co2_concentration_callback_threshold('>', 750, 0)
+    # Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
+    co2.set_co2_concentration_callback_threshold(">", 750, 0)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

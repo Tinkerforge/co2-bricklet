@@ -19,12 +19,12 @@ ipcon.connect HOST, PORT # Connect to brickd
 # Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 co2.set_debounce_period 10000
 
-# Register threshold reached callback for CO2 concentration greater than 750 ppm (parameter has unit ppm)
+# Register CO2 concentration reached callback (parameter has unit ppm)
 co2.register_callback(BrickletCO2::CALLBACK_CO2_CONCENTRATION_REACHED) do |co2_concentration|
   puts "CO2 Concentration: #{co2_concentration} ppm"
 end
 
-# Configure threshold for "greater than 750 ppm" (unit is ppm)
+# Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 co2.set_co2_concentration_callback_threshold '>', 750, 0
 
 puts 'Press key to exit'

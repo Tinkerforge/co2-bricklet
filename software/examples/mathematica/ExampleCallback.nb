@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[      6263,        148]
-NotebookOptionsPosition[      5837,        127]
-NotebookOutlinePosition[      6169,        142]
-CellTagsIndexPosition[      6126,        139]
+NotebookDataLength[      6129,        149]
+NotebookOptionsPosition[      5703,        128]
+NotebookOutlinePosition[      6035,        143]
+CellTagsIndexPosition[      5992,        140]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,55 +26,34 @@ Cell[BoxData[{
    3.600685362498796*^9}],
 
 Cell[BoxData[{
- RowBox[{"host", "=", "\"\<localhost\>\""}], "\[IndentingNewLine]", 
- RowBox[{"port", "=", "4223"}], "\[IndentingNewLine]", 
+ RowBox[{"host", "=", "\"\<localhost\>\""}], "\n", 
+ RowBox[{"port", "=", "4223"}], "\n", 
  RowBox[{
-  RowBox[{"uid", "=", "\"\<amb\>\""}], 
-  RowBox[{"(*", " ", 
-   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], " ", "*)"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"uid", "=", "\"\<XYZ\>\""}], 
+  RowBox[{"(*", 
+   RowBox[{"Change", " ", "to", " ", "your", " ", "UID"}], "*)"}], "\n", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
    RowBox[{
    "Create", " ", "IPConnection", " ", "and", " ", "device", " ", "object"}], 
-   " ", "*)"}]}], "\[IndentingNewLine]", 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{"ipcon", "=", 
   RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}], "\n", 
  RowBox[{"co2", "=", 
   RowBox[{"NETNew", "[", 
    RowBox[{"\"\<Tinkerforge.BrickletCO2\>\"", ",", "uid", ",", "ipcon"}], 
-   "]"}]}], "\[IndentingNewLine]", 
+   "]"}]}], "\n", 
  RowBox[{
   RowBox[{"ipcon", "@", 
    RowBox[{"Connect", "[", 
     RowBox[{"host", ",", "port"}], "]"}]}], "\n", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{
-   "Set", " ", "Period", " ", "for", " ", "CO2", " ", "concentration", " ", 
-    "callback", " ", "to", " ", "1", "s", " ", 
-    RowBox[{"(", 
-     RowBox[{"1000", "ms"}], ")"}]}], " ", "*)"}], "\n", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Note", ":", " ", 
-    RowBox[{
-    "The", " ", "CO2", " ", "concentration", " ", "callback", " ", "is", " ", 
-     "only", " ", "called", " ", "every", " ", "second", " ", "if", " ", 
-     "the"}]}], " ", "*)"}], "\n", 
-  RowBox[{"(*", "       ", 
-   RowBox[{
-   "CO2", " ", "concentration", " ", "has", " ", "changed", " ", "since", " ",
-     "the", " ", "last", " ", 
-    RowBox[{"call", "!"}]}], " ", "*)"}]}], "\n", 
- RowBox[{
-  RowBox[{"co2", "@", 
-   RowBox[{"SetCO2ConcentrationCallbackPeriod", "[", "1000", "]"}]}], "\n", 
-  "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
+  RowBox[{"(*", 
    RowBox[{
    "Callback", " ", "function", " ", "for", " ", "CO2", " ", "concentration", 
     " ", "callback", " ", 
     RowBox[{"(", 
-     RowBox[{"parameter", " ", "has", " ", "unit", " ", "ppm"}], ")"}]}], " ",
-    "*)"}]}], "\[IndentingNewLine]", 
+     RowBox[{"parameter", " ", "has", " ", "unit", " ", "ppm"}], ")"}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"CO2ConcentrationCB", "[", 
    RowBox[{"sender_", ",", "co2Concentration_"}], "]"}], ":=", 
@@ -85,20 +64,41 @@ Cell[BoxData[{
      RowBox[{"N", "[", 
       RowBox[{"Quantity", "[", 
        RowBox[{"co2Concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], 
-     "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+     "]"}]}], "]"}]}], "\n", 
  RowBox[{
   RowBox[{"AddEventHandler", "[", 
    RowBox[{
     RowBox[{"co2", "@", "CO2Concentration"}], ",", "CO2ConcentrationCB"}], 
-   "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+   "]"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+   "Set", " ", "period", " ", "for", " ", "CO2", " ", "concentration", " ", 
+    "callback", " ", "to", " ", "1", "s", " ", 
+    RowBox[{"(", 
+     RowBox[{"1000", "ms"}], ")"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Note", ":", 
+    RowBox[{
+    "The", " ", "CO2", " ", "concentration", " ", "callback", " ", "is", " ", 
+     "only", " ", "called", " ", "every", " ", "second"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "if", " ", "the", " ", "CO2", " ", "concentration", " ", "has", " ", 
+    "changed", " ", "since", " ", "the", " ", "last", " ", 
+    RowBox[{"call", "!"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"co2", "@", 
+   RowBox[{"SetCO2ConcentrationCallbackPeriod", "[", "1000", "]"}]}], 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{"Clean", " ", "up"}], " ", "*)"}]}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Clean", " ", "up"}], "*)"}]}], "\n", 
  RowBox[{"ipcon", "@", 
-  RowBox[{"Disconnect", "[", "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"ReleaseNETObject", "[", "co2", "]"}], "\[IndentingNewLine]", 
+  RowBox[{"Disconnect", "[", "]"}]}], "\n", 
+ RowBox[{"ReleaseNETObject", "[", "co2", "]"}], "\n", 
  RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]}], "Input",
  CellChangeTimes->{{3.600075175574196*^9, 3.600075177574486*^9}, {
    3.600075518821967*^9, 3.60007554243471*^9}, {3.600075580562348*^9, 
@@ -123,10 +123,11 @@ Cell[BoxData[{
    3.6006086083315887`*^9, 3.600608696478737*^9}, {3.600608732817322*^9, 
    3.600608760452553*^9}, {3.600608824736239*^9, 3.600608825481593*^9}, 
    3.60060918655473*^9, {3.600609227515625*^9, 3.600609227953993*^9}, {
-   3.644134461297558*^9, 3.6441344729857807`*^9}}]
+   3.644134461297558*^9, 3.6441344729857807`*^9}, {3.6514963103599653`*^9, 
+   3.651496312681108*^9}}]
 },
 WindowSize->{1521, 867},
-WindowMargins->{{334, 65}, {54, Automatic}},
+WindowMargins->{{333, 64}, {53, Automatic}},
 FrontEndVersion->"9.0 for Linux x86 (64-bit) (November 20, 2012)",
 StyleDefinitions->"Default.nb"
 ]
@@ -142,7 +143,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[400, 13, 652, 12, 55, "Input"],
-Cell[1055, 27, 4778, 98, 561, "Input"]
+Cell[1055, 27, 4644, 99, 561, "Input"]
 }
 ]
 *)

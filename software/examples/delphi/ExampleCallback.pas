@@ -42,13 +42,13 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
+  { Register CO2 concentration callback to procedure CO2ConcentrationCB }
+  co2.OnCO2Concentration := {$ifdef FPC}@{$endif}CO2ConcentrationCB;
+
   { Set period for CO2 concentration callback to 1s (1000ms)
     Note: The CO2 concentration callback is only called every second
           if the CO2 concentration has changed since the last call! }
   co2.SetCO2ConcentrationCallbackPeriod(1000);
-
-  { Register CO2 concentration callback to procedure CO2ConcentrationCB }
-  co2.OnCO2Concentration := {$ifdef FPC}@{$endif}CO2ConcentrationCB;
 
   WriteLn('Press key to exit');
   ReadLn;
