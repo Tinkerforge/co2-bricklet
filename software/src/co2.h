@@ -25,6 +25,15 @@
 #include <stdint.h>
 #include "bricklib/com/com_common.h"
 
+#define CO2_ERROR_FATAL_ERROR                       (1 << 0)
+#define CO2_ERROR_MEASUREMENT_ERROR                 (1 << 1)
+#define CO2_ERROR_SENSOR_COMMUNICATION_ERROR        (1 << 2)
+#define CO2_ERROR_UNKNOWN                           (1 << 3)
+#define CO2_ERROR_DETECTOR_TEMPERATURE_OUT_OF_RANGE (1 << 4)
+#define CO2_ERROR_CO2_OUT_OF_RANGE                  (1 << 5)
+#define CO2_ERROR_MEMORY_ERROR                      (1 << 6)
+#define CO2_ERROR_SPACE_TEMPERATURE_OUT_OF_RANGE    (1 << 7)
+
 #define FID_GET_CO2_CONCENTRATION 1
 #define FID_SET_CO2_CONCENTRATION_CALLBACK_PERIOD 2
 #define FID_GET_CO2_CONCENTRATION_CALLBACK_PERIOD 3

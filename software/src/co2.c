@@ -91,16 +91,21 @@ void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
 		if(BC->tick % 500 == 0) {
 			uint8_t data[4];
-			//k30_read_registers(0x1E, data, 3);
 			k30_read_registers(0x08, data, 4);
 			const uint8_t checksum = data[0] + data[1] + data[2];
 
-			// TODO: Handle errors (data[0])
-			if((checksum == data[3]) && (data[0] != 255) && !(data[1] == 0 && data[2] == 0)) {
+			// In case of "no error", data[3] is the checksum and data[0] is 0.
+			// We don't accept a co2 value of 0 (data[1] = data[2] = 0)
+			if((checksum == data[3]) && (data[0] == 0) && !(data[1] == 0 && data[2] == 0)) {
 				BC->last_value[SIMPLE_UNIT_CO2_CONCENTRATION] = BC->value[SIMPLE_UNIT_CO2_CONCENTRATION];
 				BC->value[SIMPLE_UNIT_CO2_CONCENTRATION] = (data[1] << 8) | data[2];
+			} else if(data[0] != 0) { // Increase error counter for error
+				for(uint8_t i = 0; i < 8; i++) {
+					if(data[0] & (1 << i)) {
+						BC->error_counter[i]++;
+					}
+				}
 			}
-			//BA->printf("data: %d %d %d %d -> %d\n\r", data[0], data[1], data[2], data[3], checksum);
 		}
 	}
 

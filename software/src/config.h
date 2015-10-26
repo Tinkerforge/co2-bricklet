@@ -58,6 +58,8 @@
 #define SIMPLE_VALUE_TYPE uint16_t
 #define NUM_SIMPLE_VALUES 1
 
+#define NUM_CO2_ERRORS 7
+
 typedef struct {
 	int32_t value[NUM_SIMPLE_VALUES];
 	int32_t last_value[NUM_SIMPLE_VALUES];
@@ -79,6 +81,8 @@ typedef struct {
 	char     threshold_option_save[NUM_SIMPLE_VALUES];
 
 	uint32_t tick;
+
+	uint16_t error_counter[NUM_CO2_ERRORS];
 } BrickContext;
 
 #endif
