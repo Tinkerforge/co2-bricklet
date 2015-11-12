@@ -7,7 +7,7 @@ function matlab_example_threshold()
     UID = 'XYZ'; % Change to your UID
 
     ipcon = IPConnection(); % Create IP connection
-    co2 = BrickletCO2(UID, ipcon); % Create device object
+    co2 = handle(BrickletCO2(UID, ipcon), 'CallbackProperties'); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
