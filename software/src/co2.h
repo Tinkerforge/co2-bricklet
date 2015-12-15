@@ -51,7 +51,7 @@ void constructor(void);
 void destructor(void);
 void tick(const uint8_t tick_type);
 
-void k30_read_registers(const uint8_t reg, uint8_t *data, const uint8_t length);
+void k30_read_registers(const uint8_t reg, uint8_t *data, const uint8_t length, const uint8_t state);
 void k30_write_register(const uint8_t reg, const uint8_t value);
 
 bool i2c_scl_value(void);

@@ -60,6 +60,11 @@
 
 #define NUM_CO2_ERRORS 7
 
+typedef enum {
+	CO2_STATE_WRITE_ADDRESS,
+	CO2_STATE_READ
+} CO2State;
+
 typedef struct {
 	int32_t value[NUM_SIMPLE_VALUES];
 	int32_t last_value[NUM_SIMPLE_VALUES];
@@ -83,6 +88,9 @@ typedef struct {
 	uint32_t tick;
 
 	uint16_t error_counter[NUM_CO2_ERRORS];
+
+	CO2State co2_state;
+	uint8_t co2_write_counter;
 } BrickContext;
 
 #endif

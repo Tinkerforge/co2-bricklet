@@ -52,7 +52,6 @@ const SimpleUnitProperty sup[] = {
 
 const uint8_t smp_length = sizeof(smp);
 
-
 void invocation(const ComType com, const uint8_t *data) {
 	simple_invocation(com, data);
 
@@ -81,6 +80,9 @@ void constructor(void) {
 	BA->PIO_Configure(&PIN_SDA, 1);
 
 	simple_constructor();
+
+	BC->co2_state = CO2_STATE_WRITE_ADDRESS;
+	BC->co2_write_counter = 0;
 }
 
 void destructor(void) {
@@ -89,22 +91,26 @@ void destructor(void) {
 
 void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
-		if(BC->tick % 500 == 0) {
+		if(BC->tick % 2000 == 0 && BC->co2_state == CO2_STATE_WRITE_ADDRESS) {
 			uint8_t data[4];
-			k30_read_registers(0x08, data, 4);
-			const uint8_t checksum = data[0] + data[1] + data[2];
+			k30_read_registers(0x08, data, 4, BC->co2_state);
+			BC->co2_state = CO2_STATE_READ;
+			BC->co2_write_counter = 20;
+		}
+		if(BC->co2_write_counter > 0) {
+			BC->co2_write_counter--;
+			if(BC->co2_write_counter == 0 && BC->co2_state == CO2_STATE_READ) {
+				uint8_t data[4] = {255, 255, 255, 255};
+				k30_read_registers(0x08, data, 4, BC->co2_state);
+				const uint8_t checksum = data[0] + data[1] + data[2];
 
-			// In case of "no error", data[3] is the checksum and data[0] is 0.
-			// We don't accept a co2 value of 0 (data[1] = data[2] = 0)
-			if((checksum == data[3]) && (data[0] == 0) && !(data[1] == 0 && data[2] == 0)) {
-				BC->last_value[SIMPLE_UNIT_CO2_CONCENTRATION] = BC->value[SIMPLE_UNIT_CO2_CONCENTRATION];
-				BC->value[SIMPLE_UNIT_CO2_CONCENTRATION] = (data[1] << 8) | data[2];
-			} else if(data[0] != 0) { // Increase error counter for error
-				for(uint8_t i = 0; i < 8; i++) {
-					if(data[0] & (1 << i)) {
-						BC->error_counter[i]++;
-					}
+				// We don't accept a co2 value of 0 (data[1] = data[2] = 0)
+				if((checksum == data[3]) && (data[0] == 33) && !(data[1] == 0 && data[2] == 0)) {
+					BC->last_value[SIMPLE_UNIT_CO2_CONCENTRATION] = BC->value[SIMPLE_UNIT_CO2_CONCENTRATION];
+					BC->value[SIMPLE_UNIT_CO2_CONCENTRATION] = (data[1] << 8) | data[2];
 				}
+
+				BC->co2_state = CO2_STATE_WRITE_ADDRESS;
 			}
 		}
 	}
@@ -112,34 +118,36 @@ void tick(const uint8_t tick_type) {
 	simple_tick(tick_type);
 }
 
-void k30_read_registers(const uint8_t reg, uint8_t *data, const uint8_t length) {
-	const uint8_t command_and_bytes_to_read = (2 << 4) | (length-2);
-	for(uint8_t i = 0; i < length; i++) {
-		data[i] = 0;
+void k30_read_registers(const uint8_t reg, uint8_t *data, const uint8_t length, const uint8_t state) {
+	switch(state) {
+		case CO2_STATE_WRITE_ADDRESS: {
+			const uint8_t command_and_bytes_to_read = (2 << 4) | (length-2);
+			for(uint8_t i = 0; i < length; i++) {
+				data[i] = 0;
+			}
+
+			i2c_start();
+			i2c_send_byte((I2C_ADDRESS_K30 << 1) | I2C_WRITE);
+			i2c_send_byte(command_and_bytes_to_read);
+			i2c_send_byte(0);
+			i2c_send_byte(reg);
+			i2c_send_byte(command_and_bytes_to_read + 0 + reg);
+			i2c_stop();
+
+			break;
+		}
+
+		case CO2_STATE_READ: {
+			i2c_start();
+			i2c_send_byte((I2C_ADDRESS_K30 << 1) | I2C_READ);
+			for(uint8_t i = 0; i < length; i++) {
+				data[i] = i2c_recv_byte(i != (length - 1));
+			}
+			i2c_stop();
+
+			break;
+		}
 	}
-
-/*	i2c_start();
-	i2c_send_byte(0);
-	i2c_stop();
-
-	SLEEP_MS(1);*/
-
-	i2c_start();
-	i2c_send_byte((I2C_ADDRESS_K30 << 1) | I2C_WRITE);
-	i2c_send_byte(command_and_bytes_to_read);
-	i2c_send_byte(0);
-	i2c_send_byte(reg);
-	i2c_send_byte(command_and_bytes_to_read + 0 + reg);
-	i2c_stop();
-
-	SLEEP_MS(20);
-
-	i2c_start();
-	i2c_send_byte((I2C_ADDRESS_K30 << 1) | I2C_READ);
-	for(uint8_t i = 0; i < length; i++) {
-		data[i] = i2c_recv_byte(i != (length - 1));
-	}
-	i2c_stop();
 }
 
 void k30_write_register(const uint8_t reg, const uint8_t value) {
