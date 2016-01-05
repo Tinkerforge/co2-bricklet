@@ -89,8 +89,8 @@ typedef struct {
 
 	uint16_t error_counter[NUM_CO2_ERRORS];
 
-	CO2State co2_state;
-	uint8_t co2_write_counter;
+	uint8_t k30_wait_time_counter;
+	uint16_t k30_counter;
 } BrickContext;
 
 #endif

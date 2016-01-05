@@ -60,9 +60,7 @@ void invocation(const ComType com, const uint8_t *data) {
 	}
 }
 
-void constructor(void) {
-	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
-
+void k30_reset(void) {
 	PIN_AD.type = PIO_INPUT;
 	PIN_AD.attribute = PIO_DEFAULT;
 	BA->PIO_Configure(&PIN_AD, 1);
@@ -79,10 +77,15 @@ void constructor(void) {
 	PIN_SDA.attribute = PIO_PULLUP;
 	BA->PIO_Configure(&PIN_SDA, 1);
 
-	simple_constructor();
+	BC->k30_wait_time_counter = 0;
+	BC->k30_counter = 0;
+}
 
-	BC->co2_state = CO2_STATE_WRITE_ADDRESS;
-	BC->co2_write_counter = 0;
+void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
+	k30_reset();
+	simple_constructor();
 }
 
 void destructor(void) {
@@ -91,26 +94,36 @@ void destructor(void) {
 
 void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
-		if(BC->tick % 2000 == 0 && BC->co2_state == CO2_STATE_WRITE_ADDRESS) {
-			uint8_t data[4];
-			k30_read_registers(0x08, data, 4, BC->co2_state);
-			BC->co2_state = CO2_STATE_READ;
-			BC->co2_write_counter = 20;
-		}
-		if(BC->co2_write_counter > 0) {
-			BC->co2_write_counter--;
-			if(BC->co2_write_counter == 0 && BC->co2_state == CO2_STATE_READ) {
-				uint8_t data[4] = {255, 255, 255, 255};
-				k30_read_registers(0x08, data, 4, BC->co2_state);
-				const uint8_t checksum = data[0] + data[1] + data[2];
+		BC->k30_counter++;
+		if(BC->k30_counter >= 2000 || BC->k30_wait_time_counter > 0) {
+			BC->k30_counter = 0;
+			if(BC->k30_wait_time_counter == 0) {
+				BC->k30_counter = 0;
+				uint8_t data[4];
+				k30_read_registers(0x08, data, 4, CO2_STATE_WRITE_ADDRESS);
+				BC->k30_wait_time_counter = 20;
+			} else {
+				BC->k30_wait_time_counter--;
+				if(BC->k30_wait_time_counter == 0) {
+					uint8_t data[4] = {255, 255, 255, 255};
+					k30_read_registers(0x08, data, 4, CO2_STATE_READ);
 
-				// We don't accept a co2 value of 0 (data[1] = data[2] = 0)
-				if((checksum == data[3]) && (data[0] == 33) && !(data[1] == 0 && data[2] == 0)) {
-					BC->last_value[SIMPLE_UNIT_CO2_CONCENTRATION] = BC->value[SIMPLE_UNIT_CO2_CONCENTRATION];
-					BC->value[SIMPLE_UNIT_CO2_CONCENTRATION] = (data[1] << 8) | data[2];
+					// The read did not work at all, we reset the whole thing
+					if(data[0] == 255 && data[1] == 255 && data[2] == 255 && data[3] == 255) {
+						k30_reset();
+//						BA->printf("co2 reset\n\r");
+						return;
+					}
+
+					const uint8_t checksum = data[0] + data[1] + data[2];
+//					BA->printf("co2 data (check: %d): %d %d %d %d\n\r", checksum, data[0], data[1], data[2], data[3]);
+
+					// We don't accept a co2 value of 0 (data[1] = data[2] = 0)
+					if((checksum == data[3]) && (data[0] == 33) && !(data[1] == 0 && data[2] == 0)) {
+						BC->last_value[SIMPLE_UNIT_CO2_CONCENTRATION] = BC->value[SIMPLE_UNIT_CO2_CONCENTRATION];
+						BC->value[SIMPLE_UNIT_CO2_CONCENTRATION] = (data[1] << 8) | data[2];
+					}
 				}
-
-				BC->co2_state = CO2_STATE_WRITE_ADDRESS;
 			}
 		}
 	}
