@@ -44,6 +44,7 @@ int main(void) {
 
 	printf("Press key to exit\n");
 	getchar();
+	co2_destroy(&co2);
 	ipcon_destroy(&ipcon); // Calls ipcon_disconnect internally
 	return 0;
 }
