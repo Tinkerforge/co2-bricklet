@@ -1,7 +1,7 @@
 #!/bin/sh
 # Connects to localhost:4223 by default, use --host and --port to change this
 
-uid=XYZ # Change to your UID
+uid=XYZ # Change XYZ to the UID of your CO2 Bricklet
 
 # Handle incoming CO2 concentration callbacks (parameter has unit ppm)
 tinkerforge dispatch co2-bricklet $uid co2-concentration &

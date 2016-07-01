@@ -12,20 +12,22 @@ type
     ipcon: TIPConnection;
     co2: TBrickletCO2;
   public
-    procedure CO2ConcentrationReachedCB(sender: TBrickletCO2; const co2Concentration: word);
+    procedure CO2ConcentrationReachedCB(sender: TBrickletCO2;
+                                        const co2Concentration: word);
     procedure Execute;
   end;
 
 const
   HOST = 'localhost';
   PORT = 4223;
-  UID = 'XYZ'; { Change to your UID }
+  UID = 'XYZ'; { Change XYZ to the UID of your CO2 Bricklet }
 
 var
   e: TExample;
 
 { Callback procedure for CO2 concentration reached callback (parameter has unit ppm) }
-procedure TExample.CO2ConcentrationReachedCB(sender: TBrickletCO2; const co2Concentration: word);
+procedure TExample.CO2ConcentrationReachedCB(sender: TBrickletCO2;
+                                             const co2Concentration: word);
 begin
   WriteLn(Format('CO2 Concentration: %d ppm', [co2Concentration]));
 end;

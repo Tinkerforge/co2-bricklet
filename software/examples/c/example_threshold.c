@@ -5,7 +5,7 @@
 
 #define HOST "localhost"
 #define PORT 4223
-#define UID "XYZ" // Change to your UID
+#define UID "XYZ" // Change XYZ to the UID of your CO2 Bricklet
 
 // Callback function for CO2 concentration reached callback (parameter has unit ppm)
 void cb_co2_concentration_reached(uint16_t co2_concentration, void *user_data) {

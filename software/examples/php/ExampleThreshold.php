@@ -8,7 +8,7 @@ use Tinkerforge\BrickletCO2;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = 'XYZ'; // Change to your UID
+const UID = 'XYZ'; // Change XYZ to the UID of your CO2 Bricklet
 
 // Callback function for CO2 concentration reached callback (parameter has unit ppm)
 function cb_co2ConcentrationReached($co2_concentration)

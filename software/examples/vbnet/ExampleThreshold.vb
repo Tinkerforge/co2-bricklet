@@ -4,10 +4,11 @@ Imports Tinkerforge
 Module ExampleThreshold
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
-    Const UID As String = "XYZ" ' Change to your UID
+    Const UID As String = "XYZ" ' Change XYZ to the UID of your CO2 Bricklet
 
     ' Callback subroutine for CO2 concentration reached callback (parameter has unit ppm)
-    Sub CO2ConcentrationReachedCB(ByVal sender As BrickletCO2, ByVal co2Concentration As Integer)
+    Sub CO2ConcentrationReachedCB(ByVal sender As BrickletCO2, _
+                                  ByVal co2Concentration As Integer)
         Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")
     End Sub
 

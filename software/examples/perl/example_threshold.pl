@@ -5,7 +5,7 @@ use Tinkerforge::BrickletCO2;
 
 use constant HOST => 'localhost';
 use constant PORT => 4223;
-use constant UID => 'XYZ'; # Change to your UID
+use constant UID => 'XYZ'; # Change XYZ to the UID of your CO2 Bricklet
 
 # Callback subroutine for CO2 concentration reached callback (parameter has unit ppm)
 sub cb_co2_concentration_reached
