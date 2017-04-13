@@ -25,7 +25,7 @@ class Example
 		co2.SetDebouncePeriod(10000);
 
 		// Register CO2 concentration reached callback to function CO2ConcentrationReachedCB
-		co2.CO2ConcentrationReached += CO2ConcentrationReachedCB;
+		co2.CO2ConcentrationReachedCallback += CO2ConcentrationReachedCB;
 
 		// Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 		co2.SetCO2ConcentrationCallbackThreshold('>', 750, 0);

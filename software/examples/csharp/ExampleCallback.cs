@@ -22,7 +22,7 @@ class Example
 		// Don't use device before ipcon is connected
 
 		// Register CO2 concentration callback to function CO2ConcentrationCB
-		co2.CO2Concentration += CO2ConcentrationCB;
+		co2.CO2ConcentrationCallback += CO2ConcentrationCB;
 
 		// Set period for CO2 concentration callback to 1s (1000ms)
 		// Note: The CO2 concentration callback is only called every second
