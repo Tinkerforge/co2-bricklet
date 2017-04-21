@@ -10,7 +10,7 @@ tinkerforge call co2-bricklet $uid set-debounce-period 10000
 tinkerforge dispatch co2-bricklet $uid co2-concentration-reached &
 
 # Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
-tinkerforge call co2-bricklet $uid set-co2-concentration-callback-threshold greater 750 0
+tinkerforge call co2-bricklet $uid set-co2-concentration-callback-threshold threshold-option-greater 750 0
 
 echo "Press key to exit"; read dummy
 
