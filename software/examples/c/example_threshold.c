@@ -33,7 +33,8 @@ int main(void) {
 	// Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	co2_set_debounce_period(&co2, 10000);
 
-	// Register CO2 concentration reached callback to function cb_co2_concentration_reached
+	// Register CO2 concentration reached callback
+	// to function cb_co2_concentration_reached
 	co2_register_callback(&co2,
 	                      CO2_CALLBACK_CO2_CONCENTRATION_REACHED,
 	                      (void *)cb_co2_concentration_reached,

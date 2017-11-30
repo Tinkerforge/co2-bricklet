@@ -22,8 +22,10 @@ Module ExampleThreshold
         ' Get threshold callbacks with a debounce time of 10 seconds (10000ms)
         co2.SetDebouncePeriod(10000)
 
-        ' Register CO2 concentration reached callback to subroutine CO2ConcentrationReachedCB
-        AddHandler co2.CO2ConcentrationReached, AddressOf CO2ConcentrationReachedCB
+        ' Register CO2 concentration reached callback to
+        ' subroutine CO2ConcentrationReachedCB
+        AddHandler co2.CO2ConcentrationReachedCallback, _
+                   AddressOf CO2ConcentrationReachedCB
 
         ' Configure threshold for co2_concentration "greater than 750 ppm" (unit is ppm)
         co2.SetCO2ConcentrationCallbackThreshold(">"C, 750, 0)

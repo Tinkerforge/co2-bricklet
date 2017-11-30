@@ -13,7 +13,7 @@ ipcon@Connect[host,port]
 (*Callback function for CO2 concentration callback (parameter has unit ppm)*)
 CO2ConcentrationCB[sender_,co2Concentration_]:=
  Print["CO2 Concentration: "<>ToString[N[Quantity[co2Concentration,"ppm"]]]]
-AddEventHandler[co2@CO2Concentration,CO2ConcentrationCB]
+AddEventHandler[co2@CO2ConcentrationCallback,CO2ConcentrationCB]
 
 (*Set period for CO2 concentration callback to 1s (1000ms)*)
 (*Note: The CO2 concentration callback is only called every second*)

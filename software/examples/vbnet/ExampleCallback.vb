@@ -20,7 +20,7 @@ Module ExampleCallback
         ' Don't use device before ipcon is connected
 
         ' Register CO2 concentration callback to subroutine CO2ConcentrationCB
-        AddHandler co2.CO2Concentration, AddressOf CO2ConcentrationCB
+        AddHandler co2.CO2ConcentrationCallback, AddressOf CO2ConcentrationCB
 
         ' Set period for CO2 concentration callback to 1s (1000ms)
         ' Note: The CO2 concentration callback is only called every second

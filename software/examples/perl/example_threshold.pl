@@ -25,7 +25,8 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 $co2->set_debounce_period(10000);
 
 # Register CO2 concentration reached callback to subroutine cb_co2_concentration_reached
-$co2->register_callback($co2->CALLBACK_CO2_CONCENTRATION_REACHED, 'cb_co2_concentration_reached');
+$co2->register_callback($co2->CALLBACK_CO2_CONCENTRATION_REACHED,
+                        'cb_co2_concentration_reached');
 
 # Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
 $co2->set_co2_concentration_callback_threshold('>', 750, 0);
