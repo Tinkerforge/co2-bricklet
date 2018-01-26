@@ -11,7 +11,7 @@
 void cb_co2_concentration_reached(uint16_t co2_concentration, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
-	printf("CO2 Concentration: %d ppm\n", co2_concentration);
+	printf("CO2 Concentration: %u ppm\n", co2_concentration);
 }
 
 int main(void) {

@@ -30,7 +30,7 @@ int main(void) {
 		return 1;
 	}
 
-	printf("CO2 Concentration: %d ppm\n", co2_concentration);
+	printf("CO2 Concentration: %u ppm\n", co2_concentration);
 
 	printf("Press key to exit\n");
 	getchar();
