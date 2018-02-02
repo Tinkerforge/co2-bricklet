@@ -44,14 +44,14 @@
                         // Get threshold callbacks with a debounce time of 10 seconds (10000ms)
                         co2.setDebouncePeriod(10000);
 
-                        // Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
+                        // Configure threshold for CO2 concentration "greater than 750 ppm"
                         co2.setCO2ConcentrationCallbackThreshold('>', 750, 0);
                     }
                 );
 
                 // Register CO2 concentration reached callback
                 co2.on(Tinkerforge.BrickletCO2.CALLBACK_CO2_CONCENTRATION_REACHED,
-                    // Callback function for CO2 concentration reached callback (parameter has unit ppm)
+                    // Callback function for CO2 concentration reached callback
                     function (co2Concentration) {
                         textArea.value += 'CO2 Concentration: ' + co2Concentration + ' ppm\n';
                         textArea.scrollTop = textArea.scrollHeight;

@@ -22,12 +22,12 @@ Notebook[{
    RowBox[{"co2", "@", RowBox[{"SetDebouncePeriod", "[", "10000", "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Callback function for CO2 concentration reached callback (parameter has unit ppm)", "*)"}],
+   RowBox[{"(*", "Callback function for CO2 concentration reached callback", "*)"}],
    RowBox[{RowBox[{"CO2ConcentrationReachedCB", "[", RowBox[{"sender_", ",", "co2Concentration_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<CO2 Concentration: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"co2Concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"co2", "@", "CO2ConcentrationReachedCallback"}], ",", "CO2ConcentrationReachedCB"}], "]"}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Configure threshold for CO2 concentration ", "\"\<greater than 750 ppm\>\"", " (unit is ppm)", "*)"}],
+   RowBox[{"(*", "Configure threshold for CO2 concentration ", "\"\<greater than 750 ppm\>\"", "", "*)"}],
    RowBox[{"option", "=", "Tinkerforge`BrickletCO2`THRESHOLDUOPTIONUGREATER"}],
    RowBox[{"co2", "@", RowBox[{"SetCO2ConcentrationCallbackThreshold", "[", RowBox[{"option", ",", "750", ",", "0"}], "]"}]}],
    RowBox[{"

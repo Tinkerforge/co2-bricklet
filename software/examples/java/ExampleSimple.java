@@ -17,7 +17,7 @@ public class ExampleSimple {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current CO2 concentration (unit is ppm)
+		// Get current CO2 concentration
 		int co2Concentration = co2.getCO2Concentration(); // Can throw com.tinkerforge.TimeoutException
 		System.out.println("CO2 Concentration: " + co2Concentration + " ppm");
 

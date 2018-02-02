@@ -10,7 +10,7 @@ const HOST = 'localhost';
 const PORT = 4223;
 const UID = 'XYZ'; // Change XYZ to the UID of your CO2 Bricklet
 
-// Callback function for CO2 concentration callback (parameter has unit ppm)
+// Callback function for CO2 concentration callback
 function cb_co2Concentration($co2_concentration)
 {
     echo "CO2 Concentration: $co2_concentration ppm\n";

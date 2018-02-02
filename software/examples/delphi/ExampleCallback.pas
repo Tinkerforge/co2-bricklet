@@ -24,7 +24,7 @@ const
 var
   e: TExample;
 
-{ Callback procedure for CO2 concentration callback (parameter has unit ppm) }
+{ Callback procedure for CO2 concentration callback }
 procedure TExample.CO2ConcentrationCB(sender: TBrickletCO2; const co2Concentration: word);
 begin
   WriteLn(Format('CO2 Concentration: %d ppm', [co2Concentration]));

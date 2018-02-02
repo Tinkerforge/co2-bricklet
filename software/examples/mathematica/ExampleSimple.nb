@@ -18,7 +18,7 @@ Notebook[{
    RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Get current CO2 concentration (unit is ppm)", "*)"}],
+   RowBox[{"(*", "Get current CO2 concentration", "*)"}],
    RowBox[{"Print", "[", RowBox[{"\"\<CO2 Concentration: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{RowBox[{"co2", "@", RowBox[{"GetCO2Concentration", "[", "]"}]}], ",", "\"\<ppm\>\""}], "]"}], "]"}], "]"}]}], "]"}],
    RowBox[{"
 "}],

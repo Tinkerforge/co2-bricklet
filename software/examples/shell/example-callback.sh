@@ -3,7 +3,7 @@
 
 uid=XYZ # Change XYZ to the UID of your CO2 Bricklet
 
-# Handle incoming CO2 concentration callbacks (parameter has unit ppm)
+# Handle incoming CO2 concentration callbacks
 tinkerforge dispatch co2-bricklet $uid co2-concentration &
 
 # Set period for CO2 concentration callback to 1s (1000ms)

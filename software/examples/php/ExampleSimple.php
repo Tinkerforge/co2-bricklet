@@ -16,7 +16,7 @@ $co2 = new BrickletCO2(UID, $ipcon); // Create device object
 $ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
-// Get current CO2 concentration (unit is ppm)
+// Get current CO2 concentration
 $co2_concentration = $co2->getCO2Concentration();
 echo "CO2 Concentration: $co2_concentration ppm\n";
 

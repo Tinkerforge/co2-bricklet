@@ -23,7 +23,7 @@ int main(void) {
 	}
 	// Don't use device before ipcon is connected
 
-	// Get current CO2 concentration (unit is ppm)
+	// Get current CO2 concentration
 	uint16_t co2_concentration;
 	if(co2_get_co2_concentration(&co2, &co2_concentration) < 0) {
 		fprintf(stderr, "Could not get CO2 concentration, probably timeout\n");

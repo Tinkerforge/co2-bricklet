@@ -13,12 +13,12 @@ ipcon@Connect[host,port]
 (*Get threshold callbacks with a debounce time of 10 seconds (10000ms)*)
 co2@SetDebouncePeriod[10000]
 
-(*Callback function for CO2 concentration reached callback (parameter has unit ppm)*)
+(*Callback function for CO2 concentration reached callback*)
 CO2ConcentrationReachedCB[sender_,co2Concentration_]:=
  Print["CO2 Concentration: "<>ToString[N[Quantity[co2Concentration,"ppm"]]]]
 AddEventHandler[co2@CO2ConcentrationReachedCallback,CO2ConcentrationReachedCB]
 
-(*Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)*)
+(*Configure threshold for CO2 concentration "greater than 750 ppm"*)
 option=Tinkerforge`BrickletCO2`THRESHOLDUOPTIONUGREATER
 co2@SetCO2ConcentrationCallbackThreshold[option,750,0]
 

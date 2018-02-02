@@ -25,7 +25,7 @@ ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
 
 // Register CO2 concentration callback
 co2.on(Tinkerforge.BrickletCO2.CALLBACK_CO2_CONCENTRATION,
-    // Callback function for CO2 concentration callback (parameter has unit ppm)
+    // Callback function for CO2 concentration callback
     function (co2Concentration) {
         console.log('CO2 Concentration: ' + co2Concentration + ' ppm');
     }

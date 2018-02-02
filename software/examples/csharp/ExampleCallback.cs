@@ -7,7 +7,7 @@ class Example
 	private static int PORT = 4223;
 	private static string UID = "XYZ"; // Change XYZ to the UID of your CO2 Bricklet
 
-	// Callback function for CO2 concentration callback (parameter has unit ppm)
+	// Callback function for CO2 concentration callback
 	static void CO2ConcentrationCB(BrickletCO2 sender, int co2Concentration)
 	{
 		Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");

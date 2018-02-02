@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 co2=NETNew["Tinkerforge.BrickletCO2",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Callback function for CO2 concentration callback (parameter has unit ppm)*)
+(*Callback function for CO2 concentration callback*)
 CO2ConcentrationCB[sender_,co2Concentration_]:=
  Print["CO2 Concentration: "<>ToString[N[Quantity[co2Concentration,"ppm"]]]]
 AddEventHandler[co2@CO2ConcentrationCallback,CO2ConcentrationCB]

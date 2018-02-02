@@ -7,7 +7,7 @@ use constant HOST => 'localhost';
 use constant PORT => 4223;
 use constant UID => 'XYZ'; # Change XYZ to the UID of your CO2 Bricklet
 
-# Callback subroutine for CO2 concentration callback (parameter has unit ppm)
+# Callback subroutine for CO2 concentration callback
 sub cb_co2_concentration
 {
     my ($co2_concentration) = @_;

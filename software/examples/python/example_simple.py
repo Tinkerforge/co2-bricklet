@@ -15,7 +15,7 @@ if __name__ == "__main__":
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
 
-    # Get current CO2 concentration (unit is ppm)
+    # Get current CO2 concentration
     co2_concentration = co2.get_co2_concentration()
     print("CO2 Concentration: " + str(co2_concentration) + " ppm")
 

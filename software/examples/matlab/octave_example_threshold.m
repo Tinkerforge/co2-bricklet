@@ -17,14 +17,14 @@ function octave_example_threshold()
     % Register CO2 concentration reached callback to function cb_co2_concentration_reached
     co2.addCO2ConcentrationReachedCallback(@cb_co2_concentration_reached);
 
-    % Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
+    % Configure threshold for CO2 concentration "greater than 750 ppm"
     co2.setCO2ConcentrationCallbackThreshold(">", 750, 0);
 
     input("Press key to exit\n", "s");
     ipcon.disconnect();
 end
 
-% Callback function for CO2 concentration reached callback (parameter has unit ppm)
+% Callback function for CO2 concentration reached callback
 function cb_co2_concentration_reached(e)
     fprintf("CO2 Concentration: %d ppm\n", e.co2Concentration);
 end

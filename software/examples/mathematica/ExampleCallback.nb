@@ -18,7 +18,7 @@ Notebook[{
    RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
    RowBox[{"
 "}],
-   RowBox[{"(*", "Callback function for CO2 concentration callback (parameter has unit ppm)", "*)"}],
+   RowBox[{"(*", "Callback function for CO2 concentration callback", "*)"}],
    RowBox[{RowBox[{"CO2ConcentrationCB", "[", RowBox[{"sender_", ",", "co2Concentration_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<CO2 Concentration: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"co2Concentration", ",", "\"\<ppm\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
    RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"co2", "@", "CO2ConcentrationCallback"}], ",", "CO2ConcentrationCB"}], "]"}],
    RowBox[{"

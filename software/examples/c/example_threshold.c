@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your CO2 Bricklet
 
-// Callback function for CO2 concentration reached callback (parameter has unit ppm)
+// Callback function for CO2 concentration reached callback
 void cb_co2_concentration_reached(uint16_t co2_concentration, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 
@@ -40,7 +40,7 @@ int main(void) {
 	                      (void *)cb_co2_concentration_reached,
 	                      NULL);
 
-	// Configure threshold for CO2 concentration "greater than 750 ppm" (unit is ppm)
+	// Configure threshold for CO2 concentration "greater than 750 ppm"
 	co2_set_co2_concentration_callback_threshold(&co2, '>', 750, 0);
 
 	printf("Press key to exit\n");

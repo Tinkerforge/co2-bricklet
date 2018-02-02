@@ -12,7 +12,7 @@ function matlab_example_simple()
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Get current CO2 concentration (unit is ppm)
+    % Get current CO2 concentration
     co2Concentration = co2.getCO2Concentration();
     fprintf('CO2 Concentration: %i ppm\n', co2Concentration);
 

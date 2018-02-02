@@ -15,7 +15,7 @@ class Example
 		ipcon.Connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Get current CO2 concentration (unit is ppm)
+		// Get current CO2 concentration
 		int co2Concentration = co2.GetCO2Concentration();
 		Console.WriteLine("CO2 Concentration: " + co2Concentration + " ppm");
 

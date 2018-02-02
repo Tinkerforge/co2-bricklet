@@ -23,7 +23,7 @@ function octave_example_callback()
     ipcon.disconnect();
 end
 
-% Callback function for CO2 concentration callback (parameter has unit ppm)
+% Callback function for CO2 concentration callback
 function cb_co2_concentration(e)
     fprintf("CO2 Concentration: %d ppm\n", e.co2Concentration);
 end

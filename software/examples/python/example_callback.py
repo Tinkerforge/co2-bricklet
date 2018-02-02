@@ -8,7 +8,7 @@ UID = "XYZ" # Change XYZ to the UID of your CO2 Bricklet
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_co2 import BrickletCO2
 
-# Callback function for CO2 concentration callback (parameter has unit ppm)
+# Callback function for CO2 concentration callback
 def cb_co2_concentration(co2_concentration):
     print("CO2 Concentration: " + str(co2_concentration) + " ppm")
 

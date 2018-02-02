@@ -13,7 +13,7 @@ Module ExampleSimple
         ipcon.Connect(HOST, PORT) ' Connect to brickd
         ' Don't use device before ipcon is connected
 
-        ' Get current CO2 concentration (unit is ppm)
+        ' Get current CO2 concentration
         Dim co2Concentration As Integer = co2.GetCO2Concentration()
         Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")
 

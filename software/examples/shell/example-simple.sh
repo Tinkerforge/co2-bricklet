@@ -3,5 +3,5 @@
 
 uid=XYZ # Change XYZ to the UID of your CO2 Bricklet
 
-# Get current CO2 concentration (unit is ppm)
+# Get current CO2 concentration
 tinkerforge call co2-bricklet $uid get-co2-concentration

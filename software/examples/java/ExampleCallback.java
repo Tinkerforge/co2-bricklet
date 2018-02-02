@@ -17,7 +17,7 @@ public class ExampleCallback {
 		ipcon.connect(HOST, PORT); // Connect to brickd
 		// Don't use device before ipcon is connected
 
-		// Add CO2 concentration listener (parameter has unit ppm)
+		// Add CO2 concentration listener
 		co2.addCO2ConcentrationListener(new BrickletCO2.CO2ConcentrationListener() {
 			public void co2Concentration(int co2Concentration) {
 				System.out.println("CO2 Concentration: " + co2Concentration + " ppm");

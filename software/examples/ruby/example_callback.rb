@@ -16,7 +16,7 @@ co2 = BrickletCO2.new UID, ipcon # Create device object
 ipcon.connect HOST, PORT # Connect to brickd
 # Don't use device before ipcon is connected
 
-# Register CO2 concentration callback (parameter has unit ppm)
+# Register CO2 concentration callback
 co2.register_callback(BrickletCO2::CALLBACK_CO2_CONCENTRATION) do |co2_concentration|
   puts "CO2 Concentration: #{co2_concentration} ppm"
 end

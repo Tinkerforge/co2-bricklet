@@ -10,7 +10,7 @@ ipcon=NETNew["Tinkerforge.IPConnection"]
 co2=NETNew["Tinkerforge.BrickletCO2",uid,ipcon]
 ipcon@Connect[host,port]
 
-(*Get current CO2 concentration (unit is ppm)*)
+(*Get current CO2 concentration*)
 Print["CO2 Concentration: "<>ToString[N[Quantity[co2@GetCO2Concentration[],"ppm"]]]]
 
 (*Clean up*)

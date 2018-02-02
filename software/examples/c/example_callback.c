@@ -7,7 +7,7 @@
 #define PORT 4223
 #define UID "XYZ" // Change XYZ to the UID of your CO2 Bricklet
 
-// Callback function for CO2 concentration callback (parameter has unit ppm)
+// Callback function for CO2 concentration callback
 void cb_co2_concentration(uint16_t co2_concentration, void *user_data) {
 	(void)user_data; // avoid unused parameter warning
 

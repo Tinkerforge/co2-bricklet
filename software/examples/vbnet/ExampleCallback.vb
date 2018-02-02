@@ -6,7 +6,7 @@ Module ExampleCallback
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change XYZ to the UID of your CO2 Bricklet
 
-    ' Callback subroutine for CO2 concentration callback (parameter has unit ppm)
+    ' Callback subroutine for CO2 concentration callback
     Sub CO2ConcentrationCB(ByVal sender As BrickletCO2, _
                            ByVal co2Concentration As Integer)
         Console.WriteLine("CO2 Concentration: " + co2Concentration.ToString() + " ppm")

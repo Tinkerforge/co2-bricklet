@@ -36,7 +36,7 @@ begin
   ipcon.Connect(HOST, PORT);
   { Don't use device before ipcon is connected }
 
-  { Get current CO2 concentration (unit is ppm) }
+  { Get current CO2 concentration }
   co2Concentration := co2.GetCO2Concentration;
   WriteLn(Format('CO2 Concentration: %d ppm', [co2Concentration]));
 
