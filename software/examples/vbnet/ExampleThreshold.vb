@@ -27,7 +27,7 @@ Module ExampleThreshold
         AddHandler co2.CO2ConcentrationReachedCallback, _
                    AddressOf CO2ConcentrationReachedCB
 
-        ' Configure threshold for co2_concentration "greater than 750 ppm"
+        ' Configure threshold for CO2 concentration "greater than 750 ppm"
         co2.SetCO2ConcentrationCallbackThreshold(">"C, 750, 0)
 
         Console.WriteLine("Press key to exit")
