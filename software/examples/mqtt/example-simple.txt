@@ -1,0 +1,8 @@
+
+
+# Change XYZ to the UID of your CO2 Bricklet
+
+setup:
+	# Get current CO2 concentration
+	subscribe to tinkerforge/response/co2/XYZ/get_co2_concentration
+	publish '' to tinkerforge/request/co2_bricklet/XYZ/get_co2_concentration 
