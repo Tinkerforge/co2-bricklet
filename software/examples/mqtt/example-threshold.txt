@@ -3,8 +3,10 @@
 setup:
 	# Get threshold callbacks with a debounce time of 10 seconds (10000ms)
 	publish '{"debounce": 10000}' to tinkerforge/request/co2_bricklet/XYZ/set_debounce_period
+	
 	# Handle incoming CO2 concentration reached callbacks
 	subscribe to tinkerforge/callback/co2_bricklet/XYZ/co2_concentration_reached
 	publish '{"register": true}' to tinkerforge/register/co2_bricklet/XYZ/co2_concentration_reached # Register co2_concentration_reached callback
+	
 	# Configure threshold for CO2 concentration "greater than 750 ppm"
-	publish '{"option": "greater", "min_co2_concentration": 750, "max_co2_concentration": 0}' to tinkerforge/request/co2_bricklet/XYZ/set_co2_concentration_callback_threshold
+	publish '{"option": "greater", "min": 750, "max": 0}' to tinkerforge/request/co2_bricklet/XYZ/set_co2_concentration_callback_threshold
