@@ -33,7 +33,7 @@ int main(void) {
 	// Register CO2 concentration callback to function cb_co2_concentration
 	co2_register_callback(&co2,
 	                      CO2_CALLBACK_CO2_CONCENTRATION,
-	                      (void *)cb_co2_concentration,
+	                      (void (*)(void))cb_co2_concentration,
 	                      NULL);
 
 	// Set period for CO2 concentration callback to 1s (1000ms)

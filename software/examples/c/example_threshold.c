@@ -37,7 +37,7 @@ int main(void) {
 	// cb_co2_concentration_reached
 	co2_register_callback(&co2,
 	                      CO2_CALLBACK_CO2_CONCENTRATION_REACHED,
-	                      (void *)cb_co2_concentration_reached,
+	                      (void (*)(void))cb_co2_concentration_reached,
 	                      NULL);
 
 	// Configure threshold for CO2 concentration "greater than 750 ppm"
