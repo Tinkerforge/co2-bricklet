@@ -29,5 +29,5 @@ if __name__ == "__main__":
     # Configure threshold for CO2 concentration "greater than 750 ppm"
     co2.set_co2_concentration_callback_threshold(">", 750, 0)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()

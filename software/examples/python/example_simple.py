@@ -19,5 +19,5 @@ if __name__ == "__main__":
     co2_concentration = co2.get_co2_concentration()
     print("CO2 Concentration: " + str(co2_concentration) + " ppm")
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
