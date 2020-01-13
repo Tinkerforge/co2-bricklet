@@ -4,7 +4,7 @@ setup:
 	# Handle incoming CO2 concentration callbacks
 	subscribe to tinkerforge/callback/co2_bricklet/XYZ/co2_concentration
 	publish '{"register": true}' to tinkerforge/register/co2_bricklet/XYZ/co2_concentration # Register co2_concentration callback
-	
+
 	# Set period for CO2 concentration callback to 1s (1000ms)
 	# Note: The CO2 concentration callback is only called every second
 	#       if the CO2 concentration has changed since the last call!
