@@ -20,7 +20,7 @@ func main() {
 
 	// Get current CO2 concentration.
 	co2Concentration, _ := co2.GetCO2Concentration()
-	fmt.Printf("CO2 Concentration:  ppm\n", co2Concentration)
+	fmt.Printf("CO2 Concentration: %d ppm\n", co2Concentration)
 
 	fmt.Print("Press enter to exit.")
 	fmt.Scanln()
